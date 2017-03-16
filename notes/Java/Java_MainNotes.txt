@@ -1,0 +1,150 @@
+** Java Notes 1 **
+
+	** Data types in Java **
+
+		* boolean - true or false
+		* int - it allows values between -2,147,483,648 and 2,147,483,647.
+		* char - short for character, all char values must be in single quotes, like 'L'
+		* 
+	
+	** Comment **
+		
+		// Single line comment
+
+		/* 
+			Multi-line comment bruh!
+		*/
+
+
+
+	** if / else if / else AND ternary conditional statement**
+		
+		* if statement example
+		
+			int shoeSize = 10;
+
+			if (shoeSize > 12) {
+   				 System.out.println("Sorry, your shoe size is currently not in stock.");
+			} else if (shoeSize >= 6) {
+   				 System.out.println("Your shoe size is in stock!");
+			} else {
+    				System.out.println("Sorry, this store does not carry shoes smaller than a size 6.");
+			}
+			
+
+		* ternary conditional example
+
+			int pointsScored = 21;
+
+			char gameResult = (pointsScored > 20) ? 'W' : 'L';
+			System.out.println(gameResult);
+					
+				// Above example, the int variable called 'pointsScored' is equal to '21'
+				// The Boolean expression is (pointsScored > 20), which evaluates to 'true'
+				// This will return the value of 'W' which is assigned to the variable 'gameResult'
+				// The value 'W' is printed to the console.
+
+
+	** SWITCH STATEMENT **
+			
+		int restaurantRating = 3;
+
+		switch (restaurantRating) {
+
+    			case 1: 
+				System.out.println("This restaurant is not my favorite.");
+     				break;
+
+   			case 2: 
+				System.out.println("This restaurant is good.");
+      				break;
+
+    			case 3: 
+				System.out.println("This restaurant is fantastic!");
+      				break;
+
+    			default: 
+				System.out.println("I've never dined at this restaurant.");
+      				break;
+		}
+
+			// Above example prints out "This restaurant is fantastic!"
+			// break statement will exit the switch statement after a condition is met. 
+			// Without the break statement, Java will continue to check whether the 
+			// value of restaurantRating matches any other cases.
+
+
+
+
+
+	** Java Operators **
+
+			== (equal to)
+	
+			!= (not equal to)
+
+			> (greater than)
+
+			< (less than)
+
+			>= (greater than or equal to)
+
+			<= (less than or equal to)
+
+
+
+	** Precedence of each Boolean operator **
+
+		1. '!' is evaluated first
+		2. '&&' is evaluated second
+		3. '||' is evaluated third
+
+		example :
+			System.out.println( !(false) || true && false);
+				// Above example prints out 'true' because 
+				// First, the ! Boolean operator in !(false) returns true.
+				// Second, true && false evaluates to false.
+				// Finally, the remaining expression true || false evaluates to true.	
+
+
+	* Based on Codeacademy Java *
+
+		To print: 
+			System.out.println("Hello world");  // This outputs "Hello world" on the screen.
+
+		To declare an int variable:
+			int myNumber = 21;
+		
+		To declare a boolean:
+			boolean myBoolean = true;
+		
+		
+		Single line comment:
+			// I'm a single line comment!
+		Multi-line comment:
+			/* 
+				Multi-line comment bruh!
+			*/
+
+		! not operator:
+			System.out.println( !(4 <= 10) );
+				// Above example will print out 'false' because the statement 
+				// '4' is less than '10' is 'true', but the '!' operator will return the opposite
+				// value, which is false.
+
+		
+			
+
+
+
+
+
+
+		
+
+
+	
+
+
+	* Based on Lynda *
+
