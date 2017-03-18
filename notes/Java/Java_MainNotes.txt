@@ -31,7 +31,9 @@
 	** printf **
 		System.out.printf("Your interest rate from %d is %.2f \n", i, calculateInterest(10000.0,i));
 		// the %.2f means its two decimal places
-
+		
+		System.out.println("10,000 at " + i + String.format("%.2f", calculateInterest(10000.0, i)));
+		// This is a way to use String.format
 
 	** if / else if / else AND ternary conditional statement**
 		* if statement example
