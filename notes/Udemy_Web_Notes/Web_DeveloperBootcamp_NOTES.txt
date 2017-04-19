@@ -1,0 +1,11 @@
+** Every HTML document you create will need to start with this boilerplate **
+
+	<!DOCTYPE html>
+	<head>
+	<!-- metadata goes here -->
+		<title></title>
+	</head>
+	<body>
+		<!-- Content goes here -->
+	</body>
+	</html>
