@@ -1,2 +1,4 @@
 ** Udemy Javascript **
 
+including javascript into html:
+	<script src="myJavascript.js" type="text/javascript"></script>
