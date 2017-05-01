@@ -1,0 +1,40 @@
+<!DOCTYPE HTMl>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>I already know this</title>
+	</head>
+	<body>
+
+		<h1>Things I've Learned</h1>
+		<h2>Internet Basics</h2>
+		<ol>
+			<li>HTTP Requests</li>
+			<li>IP Address</li>
+			<li>Servers</li>
+		</ol>
+
+		<h2>HTML</h2>
+		<ul>
+			<li>Stands for Hyper Text Markup Language</li>
+			<li>Lots of tages</li>
+				<ul>
+					<li>Boilerplate</li>
+						<ol>
+							<li>Doctype</li>
+							<li>HTML</li>
+							<li>HEAD</li>
+								<ol>
+									<li>Title</li>
+								</ol>
+						</ol>
+					<li>Headings</li>
+					<li>Paragraph</li>
+					<li><em>em</em></li>
+					<li><strong>strong</strong></li>
+				</ul>
+		</ul>
+
+	</body>
+
+</html>
