@@ -1,0 +1,139 @@
+jQuery
+
+	To link jQuery -  <script src='https://code.jquery.com/jquery-3.1.0.min.js'></script>
+
+** jQuery - 
+	var main = function(){
+		// main function 
+	}
+$(document).ready(main); // This is a function in jQuery that waits until the document
+			 // is loaded, or ready. When it is, then it will execute the
+			 // 'main' function above. Ready function is often used in an event
+			 // that HTML and CSS takes 5 mins to load, this code will wait
+			 // until the page completely loads before running.
+
+** Selecting Elements using jQuery
+ 
+	- With Javascript you select an HTML element with this code:
+			document.getElementByClassName('skillstech');
+
+	- with jQuery you can select the same element with:
+			$('.skillstech');
+
+** Making a variable using jQuery selectors
+	
+	With Javascript make a variable like this:
+		var aStringVariable = 'hey';
+
+	with jQuery it is a common convention to name variables with a jQuery selector, for example:
+		var $ajQueryVariable = $('#anId');  // this variable selects the #anId ID element.
+
+** jQuery hide
+
+	$('.skillset').hide(); // '.skillset' is a class and the hide function .. hides everything with
+			       //  the 'skillset' class.
+
+** jQuery fade
+
+	// similar to the hide function, but the fade function will fade an elemint in over a period
+	// of time in miilliseconds. It looks like this:
+
+		$('.example-class').fadeIn(400); 
+
+	// '400' is 400 milliseconds(0.4 seconds)
+	// keep in mind an element MUST not be currently i.e. use the hide() function
+	// displayed in order to use the fadeIn function.
+
+
+** jQuery on('click') 
+
+	// This function will wait for a click event, and when one occurs, it will execute
+	// a provided function.
+	// example below
+
+	$('.IamAclass').on('click', function(){
+		// execute the code here when .IamAclass is clicked.
+		// usually this function is used when elements are hidden
+		// And when a button is clicked all hidden elements will show or vice versa.
+
+		// PAY CLOSE ATTENTION TO THE SYNTAX. IT'S VERY CONFUSING.
+	});
+		
+
+** jQuery SHOW
+
+	// This function shows elements that are hidden
+	// it will change the CSS attribute display: none to a visible display
+	// syntax
+
+
+	$('.IamAclass').show();
+
+** jQuery TOGGLE
+
+	// this function is basically the best when it comes to hiding and showing elements
+	// because each time it is triggered, an element/s will hide or show that the selector points to
+	/ if the element is currently hidden.
+
+
+** jQuery TOGGLE CLASS
+
+	//  .toggleClass is a function that will toggle a CSS class on the jQuery selector it's connected to
+	// If the element has the class applied to it, toggleClass will remove it, and if the element does not
+	// have the class, it will add it.
+
+	for example:
+	
+	$('.IamAclass').toggleClass('active');  // this example will toggle the class 'active' on and off
+						// Notice that the toggleClass doesn't require us to include
+						// the period before 'active' because it's already expecting
+						// a CSS class.
+
+** jQuery $this selector
+
+	// this selector selects the clicked element. If there are multiple elements with a class
+	// of the same, then 'this' function will only toggle the class of the one that is clicked on
+
+	// PRETTY MUCH instead of triggering all the elements that are using the same class, only
+	// the element with a this attached to it will function, not everything.
+
+	// The proper syntax for it is, just using the previous examples for 
+	
+	$('.example-class').on('click', function() {
+  		$(this).toggleClass('active');
+	});
+
+	// This behaves just like all the other selectors, it can be attached to toggleClass or toggle
+
+** jQuery TEXT
+
+	// Text function is a function that changes a text when it is triggered
+	// for example if a user clicks on a text, the text will change into another text
+	// i.e. original text is 'Click me' after being clicked the text will change into 'I've been clicked!'
+	
+	// syntax is
+
+	$('.IamAclass').text('I've been clicked!');
+
+	
+** jQuery slidetoggle
+
+	// this function can animate an elements entrance and exit.
+	// syntax
+	
+	$('.IamAclass').slideToggle(400)  // 400 in the slideToggle is the milliseconds
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
