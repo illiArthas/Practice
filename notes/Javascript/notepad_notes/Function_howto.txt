@@ -1,0 +1,15 @@
+How to declare a funtion in Javascript:
+
+	// Two ways of doing it, first
+
+	var myFunction = function(){
+
+	};
+
+
+	// OR OR OR
+
+
+	function myFunction(){
+
+	}

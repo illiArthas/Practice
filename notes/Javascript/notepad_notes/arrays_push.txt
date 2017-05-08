@@ -1,0 +1,22 @@
+** Javascript push() allows us to add items to the end of an array. Example below:
+
+	var arrayExample = ["Iam", "A", "String"];
+	arrayExample.push("Add", "Me");  // here the push function is called.
+
+
+	// Now the arrayExample will look like
+
+		["Iam", "A", "String", "Add", "Me"];
+
+	// push function adds new arrays at the end of the array.
+
+
+** Javascript pop() is pretty much the complete opposite of push() it deletes the last element of an array
+
+	var arrayExample = ["Iam", "A", "String"];
+	arrayExample.pop();  // pop function is used on the array arrayExample
+
+	// arrayExample will now look like
+
+		["Iam", "A"];
+	
