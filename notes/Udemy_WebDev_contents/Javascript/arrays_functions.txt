@@ -1,0 +1,54 @@
+** Javascript push() allows us to add items to the end of an array. Example below:
+
+	var arrayExample = ["Iam", "A", "String"];
+	arrayExample.push("Add", "Me");  // here the push function is called.
+
+
+	// Now the arrayExample will look like
+
+		["Iam", "A", "String", "Add", "Me"];
+
+	// push function adds new arrays at the end of the array.
+
+
+** Javascript pop() is pretty much the complete opposite of push() it deletes the last element of an array
+
+	var arrayExample = ["Iam", "A", "String"];
+	arrayExample.pop();  // pop function is used on the array arrayExample
+
+	// arrayExample will now look like
+
+		["Iam", "A"];
+	
+
+** Javascript unshift and shift **
+
+	unshift - adds to the front of an array;
+		var colors = ["red","blue","yellow"];
+		colors.unshift("green");	
+		// ["green", "red", "blue", "yellow"]
+
+	shift - removes the first item in an array
+		var colors = ["red","blue","yellow"];
+		colors.shift();
+		// ["blue", "yellow"]
+
+
+** Javascript indexOf **
+
+	use indexOf() to find the index of an item in an array:
+	var myArray = ["cool","ass", "marian", "ass"];
+	myArray.indexOf("marian");	// returns 2
+	myArray.indexOf("ass");		// returns 1, not 3
+	myArray.indexOf("Levi");	// returns -1 since the element doesn't exist
+
+** Javascript slice **
+
+	Use slice to copy parts of an array, using slice doesn't alter the original array
+	it simply copies it.
+
+	var nums = [1, 3, 5, "a", "b", 31, "69"];
+
+	var letters = nums.slice(3, 5);	// this looks like ["a", "b"]
+
+

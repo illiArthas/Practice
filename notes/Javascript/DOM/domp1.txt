@@ -1,0 +1,8 @@
+A dom can make:
+- games			- scrolling effects
+- dropdown menus	- form validations
+- interactivity		- animations
+- every awesome site ever
+
+The Document Object Model (DOM) is the interface between your javascript and HTML + CSS
+
