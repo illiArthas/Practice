@@ -1,0 +1,87 @@
+DOM Manipulation:
+
+Manipulating can change an element's style, adding/removing classes,
+changing the content of a tag, changing attributes(src, href, etc.)
+
+
+* Style - property is one way to manipulate an element's style
+	// SELECT
+	var tag = document.getElementById("highlight");
+
+	// MANIPULATE
+	tag.style.color = "blue";
+	tag.style.border = "10px solid red";
+	tag.style.fontSize = "70px";
+	tag.style.background = "yellow";
+	tag.style.marginTop = "200px";
+
+
+** Important
+	Rather than directly manipulating style with JS, you can define CSS 
+	class and then toggle it on or off with JS.
+
+	// INSTEAD OF THIS
+	var tag = document.getElementById("highlight");
+	tag.style.color = "blue";
+	tag.style.border = "10px solid red";
+
+
+	/*	FIRSTLY DEFINE A CLASS	*/
+	.some-class {
+		color: blue;
+		border: 10px solid red;
+	}
+
+	// AND THEN add it to an id or something
+	tag.classList.add("some-class");
+
+
+**	**	**	**	**	**	**	**	**	**	**
+	ClassList - is a ready-only list that contains the classes for 
+	a given element. It is not an array.	
+
+	var tag = document.getElementById("highlight");
+
+	// ADD THE NEW CLASS TO THE SELECTED ELEMENT
+	tag.classList.add("some-class");
+
+	//REMOVE A CLASS
+	tag.classList.remove("some-class");
+
+	// TOGGLE A CLASS, this means if the element has that name already it removes it,
+	// but if the element doesn't have that name it adds it.
+	tag.classList.toggle("some-class");
+
+**	**	**	**	**	**	**	**	**	**	**
+
+Manipulating text and Content
+
+	* textContent 	-	Below is an example of changing a paragraph using 'textContent'
+
+	<p> This is an awesome paragraph </p>
+
+	// SELECT the <p> tag:
+	var tag = querySelector("p");
+
+	// Retrieve the textContent:
+	tag.textContent		// "This is an awesome paragraph"
+
+	// Alter the textContent:
+	tag.textContent = "This is a shit paragraph"
+
+	// Using textContent completely ignores the inner elements, means if a text is in italic
+	// it will turn it into a normal text.
+
+	**	**	**	**		
+
+	* innerHTML - similar to textContent, except it returns a string of 
+	  all the HTML contained in a given element
+
+	// SELECT the <p> tag:
+	var tag = querySelector("p");
+
+	tag.innerHTML 	// "This is a <strong> shit </strong> paragraph" it keeps the inner element
+	// this doesn't work as well, because it overwrites
+	
+
+
