@@ -101,7 +101,7 @@ Manipulating text and Content
 	//<a href="www.facebook.com">I am a link </a>
 
 	// TO CHANGE THE IMAGE SRC
-	var img = document.querySelector("src");
+	var img = document.querySelector("img");
 	img.setAttribute("src", "newImage.jpg");
 	// <img src="newImage.jpg">
 
