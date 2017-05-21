@@ -1,0 +1,50 @@
+** Events **
+	Events are everywhere:
+	- Clicking on a button
+	- Hovering over a link
+	- Dragging and Dropping
+	- PRessing the Enter Key
+
+The Process - We select an element and then add an event listener
+	"Listen for a click on this <button>"
+	"Listen for a hover event on the <h1>"
+	"Listen for a keypress event on text input"
+
+	Syntax - To add a listener, we use a method called addEventListener
+	element.addEventListener(type, functionToCall);
+
+	Example:
+	var button = document.querySelector("button");
+	
+	button.addEventListener("click", function() {
+		console.log("SOMEONE CLICKED THE BUTTON!");
+	});
+	
+
+	Example 2: Display a message when a button is clicked
+
+		<button> CLick me </button>
+		<p> No One Has Clicked Me Yet </p>
+
+		var button = document.querySelector("button");
+		var paragraph = document.querySelector("p");
+
+		// SETUP CLICK LISTENER
+		button.addEventListener("click", function(){
+			paragraph.textContent = "I've been clicked";
+		});	
+		// This whole this pretty much changes the text, once it's been clicked.
+
+	Example 3:	Can also use a named function, not just anonymous function.
+
+		var button = document.querySelector("button");
+		var paragraph = document.querySelector("p");
+
+		button.addEventListener("click", myFunction);
+
+		function myFunction() { // Functio needs to be declared like this, not var myFunction = function () {}
+			paragraph.textContent = "Someone Clicked me";
+		}
+
+	
+
