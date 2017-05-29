@@ -40,7 +40,7 @@
 
 		* git reset HEAD - This will remove a file from the staging area.
 
-		* git reset SHA - enables you to specifically reset back to a specific commit you previously
+		* git reset --hard SHA - enables you to specifically reset back to a specific commit you previously
 		  did, this command works by using the first 7 characters of the SHA commit. Check git log to find out.
 
 		* git branch - checks all the branches. The '*' signs shows which branch you're on.
@@ -95,7 +95,7 @@
 			git reset HEAD myFile.txt
 		
 		* To reset git specifically, type git reset and the first 7 letters of the SHA:
-			git reset 5d69206
+			git reset --hard 5d69206
 
 		* To check all branches and which branch you're on:
 			git branch
