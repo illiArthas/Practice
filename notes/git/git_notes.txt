@@ -6,7 +6,7 @@
 
 	** Important **	**	**	**	**
 	If you ever get stuck on git log, type:         :wq		or    press q
-	they exist you out of that.
+	they exit you out of that.
 	**	**	**	**	**	**
 
 
