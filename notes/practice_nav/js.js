@@ -7,6 +7,7 @@ var h1 = document.querySelector("h1");
 
 var itemArray = [b1, b2, b3, b4, b5];
 var counter = 0;
+var clicked = 0;
 
 window.onload = function() {
 	itemArray[counter].focus();
@@ -24,6 +25,7 @@ window.addEventListener("keydown", function(e) {
 			counter++;
 			itemArray[counter].focus();
 		}
+		clicked++;
 	} else if (e.keyCode == "37") {
 		if (counter === 0) {
 			counter = 4;
@@ -32,6 +34,8 @@ window.addEventListener("keydown", function(e) {
 			counter--;
 			itemArray[counter].focus();
 		}
+		clicked++;
 	}
+	h1.textContent = "You have pressed the keyboard " + clicked + " times";
 });
 
