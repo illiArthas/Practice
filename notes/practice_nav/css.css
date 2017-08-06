@@ -1,0 +1,7 @@
+#b1:focus, #b2:focus, #b3:focus, #b4:focus, #b5:focus {
+	color: red;
+}
+
+form {
+	display: inline-block;
+}
