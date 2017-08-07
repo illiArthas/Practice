@@ -1,15 +1,24 @@
 <?php 
 	include("includes/header.php");
+	include("includes/classes/User.php");
+	include("includes/classes/Post.php");
 	//session_destroy();			// this destroys the session, meaning it destroys the $_SESSION['username'], if this happens you won't be able to access this page unless you're logged in
+
+
+	// If the post button has been clicked, this submits the post details into the database
+	if (isset($_POST['post'])) {
+		$post = new Post($con, $userLoggedIn);
+		$post->submitPost($_POST['post_text'], 'none');
+	}
  ?>
 	<div class="user_details column">
 		<!--	This is how you show the profile picture of the user	-->
-		<a href="#"> <img src="<?php echo $user['profile_pic']; ?>"></a>
+		<a href="<?php echo $userLoggedIn; ?>"> <img src="<?php echo $user['profile_pic']; ?>"></a>
 
 
 		<!--	this is the user details on the side of the picture	-->
 		<div class="user_details_left_right">
-			<a href="#">
+			<a href="<?php echo $userLoggedIn; ?>">
 			<?php 
 				echo $user['firstName'] . " " . $user['lastName'] . "<br>";
 			 ?>
@@ -29,6 +38,13 @@
 			<input type="submit" name="post" id="post_button" value="Post">
 			<hr>
 		</form>
+
+		<!--	This is how you use User.php class and the method firstAndLastName	-->
+		<?php 
+
+			$useMan = new User($con, $userLoggedIn);
+			echo $useMan->firstAndLastName();
+		 ?>
 	</div>
 
 

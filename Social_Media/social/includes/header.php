@@ -35,7 +35,7 @@
 
 		<!--	This below is how you use font awesome icons	-->
 		<nav>
-			<a href="">
+			<a href="<?php echo $userLoggedIn; ?>">
 				<?php echo $user['firstName'] ?>		<!--	This is how you display name the firstName-->
 
 
@@ -48,6 +48,7 @@
 			<a href="#"><i class="fa fa-bell" aria-hidden="true"></i></a>
 			<a href="#"><i class="fa fa-users" aria-hidden="true"></i></a>
 			<a href="#"><i class="fa fa-cog" aria-hidden="true"></i></a>
+			<a href="includes/handlers/logout.php"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
 		</nav>
 	</div>
 
