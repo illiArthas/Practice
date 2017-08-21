@@ -42,8 +42,8 @@
 		<!--	This is how you use User.php class and the method firstAndLastName	-->
 		<?php 
 
-			$useMan = new User($con, $userLoggedIn);
-			echo $useMan->firstAndLastName();
+			$post = new Post($con, $userLoggedIn);
+			$post->loadPostsFriends();
 		 ?>
 	</div>
 
