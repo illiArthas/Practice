@@ -151,3 +151,6 @@
 	.slideDown()	// Shows the element(s), and the animation is sliding down
 	.slideUp()	// hides element(s), and the animation is sliding up
 	.slideToggle()	// Toggles between slideDown and slideUp
+
+	.append()	// this adds an element to another element
+		example:	$("ul").append("<li>This is cool</li>");	// this adds an li to the ul
