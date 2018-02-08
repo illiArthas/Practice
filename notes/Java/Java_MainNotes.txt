@@ -19,7 +19,9 @@
 		* boolean - true or false
 		* int - it allows values between -2,147,483,648 and 2,147,483,647.
 		* char - short for character, all char values must be in single quotes, like 'L'
-		* 
+		* float - proper way of declaring is: float myFloat = 5.25f;	// f indicates that this is a float
+		* double - proper way of declaring is: double myDouble = 5.25d;	// d indicates that this is a double
+
 	** Comment **
 		// Single line comment
 

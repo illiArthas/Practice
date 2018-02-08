@@ -1,5 +1,13 @@
 CSS
 
+** This is what you need at the beginning of your site, so that the header stretches to the full length
+
+	html, body{
+			margin: 0;
+			padding: 0;
+	}
+
+
 colours.neilorangepeel.com		// color website
 
 ** Importing CSS

@@ -128,6 +128,13 @@
 			$("button").on("mouseenter", function() {
 				console.log("Mouse entered");
 			});
+
+
+
+	// ul is the parent element that exists, but it's actually listening for an li click
+	$("ul").on("click", "li", function() {
+		$(this).toggleClass("clicked");
+	});
 	
 
 ** jQuery Effect **
@@ -148,8 +155,8 @@
 	.fadeIn()	// exactly the same as fadeout, but it fades element in
 	.fadeToggle()	// exactly the same as fadeIn and fadeOut, but toggles between them. Similar to, classList.toggle()
 
-	.slideDown()	// Shows the element(s), and the animation is sliding down
-	.slideUp()	// hides element(s), and the animation is sliding up
+	.slideDown()	// SHOWS the element(s), and the animation is sliding down
+	.slideUp()	// HIDES element(s), and the animation is sliding up
 	.slideToggle()	// Toggles between slideDown and slideUp
 
 	.append()	// this adds an element to another element
