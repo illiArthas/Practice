@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Exercise 28 || Web Development Bootcamp - Colt Steele</title>
+	<link rel="stylesheet" type="text/css" href="css.css">
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.8/howler.js"></script>
+	<script type="text/javascript" src="../paperJS/dist/paper-full.js"></script>
+	<script type="text/paperscript" canvas="thisNigga">
+
+	var circles = [];
+
+	var keyData = {
+		a: {
+			color: randColor(),
+			sound: new Howl({
+				src: ['../piano/A_3.mp3'],
+				volume: 0.5
+			})
+		},
+
+		b: {
+			color: randColor(),
+			sound: new Howl({
+				src: ['../piano/C_4.mp3'],
+				volume: 0.5
+			})
+		},
+
+		c: {
+			color: randColor(),
+			sound: new Howl({
+				src: ['../piano/C_5.mp3'],
+				volume: 0.5
+			})
+		},
+
+		d: {
+			color: randColor(),
+			sound: new Howl({
+				src: ['../piano/C3.mp3'],
+				volume: 0.5
+			})
+		},
+
+		e: {
+			color: randColor(),
+			sound: new Howl({
+				src: ['../piano/C4.mp3'],
+				volume: 0.5
+			})
+		},
+
+		f: {
+			color: randColor(),
+			sound: new Howl({
+				src: ['../piano/C5.mp3'],
+				volume: 0.5
+			})
+		},
+
+		g: {
+			color: randColor(),
+			sound: new Howl({
+				src: ['../piano/C6.mp3'],
+				volume: 0.5
+			})
+		},
+
+		h: {
+			color: randColor(),
+			sound: new Howl({
+				src: ['../piano/A4.mp3'],
+				volume: 0.5
+			})
+		},
+
+		i: {
+			color: randColor(),
+			sound: new Howl({
+				src: ['../piano/D_5.mp3'],
+				volume: 0.5
+			})
+		},
+
+		j: {
+			color: randColor(),
+			sound: new Howl({
+				src: ['../piano/D3.mp3'],
+				volume: 0.5
+			})
+		},
+
+		k: {
+			color: randColor(),
+			sound: new Howl({
+				src: ['../piano/D4.mp3'],
+				volume: 0.5
+			})
+		},
+
+		l: {
+			color: randColor(),
+			sound: new Howl({
+				src: ['../piano/D5.mp3'],
+				volume: 0.5
+			})
+		},
+
+		m: {
+			color: randColor(),
+			sound: new Howl({
+				src: ['../piano/E3.mp3'],
+				volume: 0.5
+			})
+		},
+
+		n: {
+			color: randColor(),
+			sound: new Howl({
+				src: ['../piano/E5.mp3'],
+				volume: 0.5
+			})
+		},
+
+		o: {
+			color: randColor(),
+			sound: new Howl({
+				src: ['../piano/F_5.mp3'],
+				volume: 0.5
+			})
+		},
+
+		p: {
+			color: randColor(),
+			sound: new Howl({
+				src: ['../piano/F3.mp3'],
+				volume: 0.5
+			})
+		},
+
+		q: {
+			color: randColor(),
+			sound: new Howl({
+				src: ['../piano/F4.mp3'],
+				volume: 0.5
+			})
+		},
+
+		r: {
+			color: randColor(),
+			sound: new Howl({
+				src: ['../piano/F5.mp3'],
+				volume: 0.5
+			})
+		},
+
+		s: {
+			color: randColor(),
+			sound: new Howl({
+				src: ['../piano/G_3.mp3'],
+				volume: 0.5
+			})
+		},
+
+		t: {
+			color: randColor(),
+			sound: new Howl({
+				src: ['../piano/G_4.mp3'],
+				volume: 0.5
+			})
+		},
+
+		u: {
+			color: randColor(),
+			sound: new Howl({
+				src: ['../piano/G_5.mp3'],
+				volume: 0.5
+			})
+		},
+
+		v: {
+			color: randColor(),
+			sound: new Howl({
+				src: ['../piano/G3.mp3'],
+				volume: 0.5
+			})
+		},
+
+		w: {
+			color: randColor(),
+			sound: new Howl({
+				src: ['../piano/G4.mp3'],
+				volume: 0.5
+			})
+		},
+
+		x: {
+			color: randColor(),
+			sound: new Howl({
+				src: ['../piano/G5.mp3'],
+				volume: 0.5
+			})
+		},
+
+		y: {
+			color: randColor(),
+			sound: new Howl({
+				src: ['../piano/B3.mp3'],
+				volume: 0.5
+			})
+		},
+
+		z: {
+			color: randColor(),
+			sound: new Howl({
+				src: ['../piano/B4.mp3'],
+				volume: 0.5
+			})
+		}
+	}
+	
+	function onKeyDown(event) {
+
+		// If an existing key in the keyData object exists, then run, else don't do anything
+
+		if (keyData[event.key]) {
+
+			var maxPoint = new Point(view.size.width, view.size.height);
+			var randomPoint = Point.random();
+			var point = maxPoint * randomPoint;
+
+			// variable 'point' means create a point whose 'x' is between 0 and the screen width,
+			// and y is between 0 and the screen height
+			// Above variable declarations can be simplified into:
+			// var point = new Point(view.size.width, view.size.height) * Point.random();
+
+
+			// Everytime a keypress is made, create a new circle with
+			// a random position, and then push into the circles array 
+
+			var myCircle = new Path.Circle(point, 140);
+			circles.push(myCircle);
+
+			myCircle.fillColor = keyData[event.key].color;
+			keyData[event.key].sound.play();
+		}
+	}
+
+	// This is what animates the colour (changes the colour)
+	function onFrame(event) {
+		for (var i = 0; i < circles.length; i++) {
+			circles[i].fillColor.hue += 1;
+			circles[i].scale(0.95);
+
+			// The if statement removes the circles in the array
+			// once they disappear from the screen
+
+			if(circles[i].area < 1){
+
+		      circles[i].remove(); // remove the circle from the canvas
+		      circles.splice(i, 1); // remove the circle from the array
+		      i--; // decrement i so that the loop doesn't skip a circle because of .splice()
+		      console.log(circles);
+		      
+		    }
+		}
+	}
+
+	function rand() {
+		return Math.floor(Math.random() * 256) + 1;
+	}
+	function randColor() {
+		return "rgb(" + rand() + ", " + rand() + ", " + rand() + ")";
+	}
+	</script>
+</head>
+<body>
+	<canvas id="thisNigga" resize></canvas>
+</body>
+</html>
