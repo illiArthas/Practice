@@ -1,0 +1,99 @@
+** To install **
+		npm install express
+
+** To use **
+
+	var express = require("express");
+	var app = express();
+
+** To define a Route **
+
+	// .get() takes in 2 parameters, 1st is the url/path
+	// 2nd is a call back function(req, res) req = request AND res = respond
+	app.get("/", function(req, res) {
+		res.send("Fuck off nigga!");
+	});
+
+
+	Examples:
+
+	// When you get a "/" send a message "Hii"
+
+	app.get("/", function(request, respond) {
+    
+		console.log("Someone opened the page!");
+		respond.send("Hii");
+	
+});
+
+	
+
+// When you get a "/bye" send a "Goodbye"
+
+	app.get("/bye", function(req, res) {
+    
+		res.send("Goodbye");
+
+	});
+
+	
+
+// When you get a "/dog" send a "Dogo"
+	
+app.get("/dog", function(req, res) {
+    
+		res.send("Dogo");
+
+	});
+
+
+	** Universal Route "*" **
+
+		app.get("*", function(req, res) {
+			res.send("Oops that file doesn't sorry");
+		});
+		
+		// This will run when any url requested in the site that are not 
+		// the ones that you've already defined, in this case they are:
+		// "/", "/bye", and "/dog"
+
+		// Its very useful for displaying error webpage any time
+		// they are trying to access a page that doesn't exist
+		
+		// VERY IMPORTANT that you put this at the very last of your routes
+		// Because order of routes are very important, if you put this
+		// at the very beginning, then all routes after this will NOT matter
+		// Think of route ordering as an if statement
+	
+
+	** Route Pattern **
+
+		// :redit   <-- this can be anything, the tag doesn't need to be "redit"
+		// it just means it's expecting something. It means match anything.
+		app.get("/dogs/:subreddit", function(req, res) {
+			console.log("subredit!!");
+		});
+
+
+	** Using variable for route pattern **
+
+		app.get("/dogs/:subreddit", function(req, res) {
+
+			// req = request, params = parameters, subreddit = :subreddit
+			var myDog = req.params.subreddit;
+			console.log("Welcome to the " + myDog + " page.");
+		});
+		
+
+
+** To listen for port **
+
+	// param 1 = PORT, param32 = call back function (optional)
+	app.listen(8080, function() {
+		console.log("Server is listening on port 8080");
+	});
+
+	// Ignore this is for cloud9
+	app.listen(process.env.PORT, process.env.IP, function() {
+		console.log("Server started");
+	});

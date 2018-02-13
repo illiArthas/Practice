@@ -1,0 +1,16 @@
+To create file*
+
+		touch myNewFile.txt
+
+To create folder *
+
+		mkdir myFavouriteFolder
+
+To remove file *
+
+		rm removeThisFile.txt
+
+To remove a folder including its files/folders inside *
+		
+		rm -rf folderName
+

@@ -1,0 +1,77 @@
+*** Intro to NodeJS ***
+	Common Stacks:
+		LAMP - Linux/Apache/MySQL/PHP
+		MEAN - MongoDB/Express.JS/Angular.JS/Node.js
+
+
+	// You can use cloud9(c9.io) to use backend technologies in the browser
+	// OR you can download server to run on your machine
+
+** Interact with the console **
+		// In JavaScript you interact with the console using
+		// console.log(), but in NodeJS you interact with the
+		// Command line by typing, 'node' it will then allow you
+		// to type javascript code in the command line, for example
+
+		Levi_Hugo/Desktop ~~ node
+		>
+		> 4 + 10
+		> 4
+		> "hello" + "world"
+		'hello world'
+		> function myDog() {
+			// console.log("This is NodeJS command line!");
+		}
+		// Can't use alert() because it comes with the browser
+		// To quit, type Ctrl + C twice
+
+
+** To run a file **
+
+	// First find the file, make sure 
+	// you're in the right directory
+	// then type
+		
+		node myFile.js
+
+*** NPM ***
+	// npm is the package manager for JavaScript
+	// think of npm as importing jQuery, css for html
+	// but npm is for importing libraries on the backend
+	// libraries that people have already coded, so other
+	// developers can use it
+
+
+** NPM install library **
+
+	// Installing an npm library is very easy, just type npm install  
+	// then the name of the package you're downloading
+
+	// To install
+			npm install cat-me
+
+	// To require goto the js file and then require at the top
+			var mySomething = require("cat-me");
+
+	// To use it
+			console.log(mySomething());
+
+	* Use 'npm install' to install a package
+	* Use 'require()' to include a package
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
