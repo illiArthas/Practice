@@ -1,0 +1,12 @@
+1. npm install express --save
+2. npm install ejs --save
+3. npm install body-parser --save
+
+
+Notes for each steps
+
+1. Express - 1, 2, 2.5
+
+2. EJS - Express_Template and EJS_3.txt
+
+3. Body-parser - Express_post_requests_4.txt
