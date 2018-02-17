@@ -1,11 +1,11 @@
 1. npm install express --save
 2. npm install ejs --save
 3. npm install body-parser --save
-4. npm install require --save
+4. npm install request --save
 
 OR
 
-1. npm install --save express ejs body-parser require
+1. npm install --save express ejs body-parser request
 
 
 Notes for each steps
