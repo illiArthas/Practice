@@ -1,0 +1,22 @@
+1. npm install express --save
+2. npm install ejs --save
+3. npm install body-parser --save
+4. npm install request --save
+5. npm install mongoose
+
+OR
+
+1. npm install --save express ejs body-parser request mongoose
+
+
+Notes for each steps
+
+1. Express - 1, 2, 2.5
+
+2. EJS - Express_Template and EJS_3.txt (EJS is a template, kind of like .html)
+
+3. Body-parser - Express_post_requests_4.txt (Body-parser is for parsing the post data)
+
+4. API folder, then open the text file
+
+5. MongoDB folder, then open the text file (Mongoose is for the database)
