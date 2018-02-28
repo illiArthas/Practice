@@ -2,7 +2,7 @@
 2. npm install ejs --save
 3. npm install body-parser --save
 4. npm install request --save
-5. npm install mongoose
+5. npm install mongoose --save
 
 OR
 

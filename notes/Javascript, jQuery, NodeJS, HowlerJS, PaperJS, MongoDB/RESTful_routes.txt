@@ -1,0 +1,12 @@
+** RESTful Routes **
+	
+	name	      url       method    description
+	=======================================================================
+	INDEX route - /dogs      GET      request and it displays a list of all dogs
+	
+	NEW route -  /dogs/new   GET      displays form to make a new dog
+
+	CREATE rou - /dogs	 POST	  add a new dog to DB
+
+	SHOW route - /dogs/:id   GET	  shows info about one dog
+	

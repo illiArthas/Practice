@@ -33,3 +33,19 @@
 	// During second step, you can ignore test command, git repo, keywords, and license
 	// During second step, entry point can be the main js file
 	
+
+
+** A good way of constructing multiple variables together **
+
+var express     	= require("express"),
+    
+	app     	= express(),
+    
+	request 	= require("request"),
+    
+	bodyParser      = require("body-parser"),
+    
+	mongoose        = require("mongoose")
+
+
+

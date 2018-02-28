@@ -97,6 +97,14 @@
 
 	db.dogs.remove({name: "Levi"});
 
+** To delete a table(collection) **
+
+	// Simply type
+	db.myTable.drop()
+
+	// Or 
+	db.collection.drop();
+
 
 ** Intro to Mongoose Library **
 
@@ -127,7 +135,7 @@
 		// if not then there will be NO message
 
 
-	* To create a table in mongoose *
+	* To create a table(Schema) in mongoose *
 		
 		// This defines pattern to expect in mongoose
 		// a pattern in the database of properties with those data type
@@ -206,8 +214,44 @@
 			}
 		});
 
+		// This returns an object
+
+	* Example of loading data from database to page *
+
+		app.get("/", function(req, res) {
+			campGroundModel.find({}, function(err, dataReturned) {
+				
+				if (err) {
+					console.log("There was an error " + err);
+				} else {
+					res.render("myPage.ejs", {data: dataReturned});
+				}
+			});
+		});
 
 
 
+	* Example of posting data from a page to be save in a database *
+
+		app.post("/campground", function(req, res) {
+			// Gets the 'name' data from post
+			var name = req.body.name;
+			var image = req.body.image;
+
+			// Creates an object based on the posted data
+			var newData = {name: name, image: image};
+
+			// Adds the data to the database
+			campGroundModel.create(newData, function(err, data) {
+				if (err) {
+					console.log("Ooops something went wrong");
+					console.log(err);
+				
+				} else {
+					res.redirect("/campground");
+				}
+			});
+			
+		});
 
 	
