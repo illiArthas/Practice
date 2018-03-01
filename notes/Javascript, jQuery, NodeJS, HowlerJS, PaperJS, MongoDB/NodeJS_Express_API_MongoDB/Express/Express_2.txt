@@ -141,6 +141,12 @@ app.get("/dog", function(req, res) {
 		res.render("myPage");	// Instead of res.render("myPage.ejs");
 	});
 
+	
+	// to redirect to the index page
+	app.get("/", function(req, res) {
+		res.redirect("/index");
+	});
+
 
 
 

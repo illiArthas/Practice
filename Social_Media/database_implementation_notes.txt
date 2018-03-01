@@ -1,6 +1,6 @@
-CREATE DATABASE social
+CREATE DATABASE social;
 
-use social
+use social;
 
 create table users(
 	id INT(5) AUTO_INCREMENT PRIMARY KEY,
@@ -18,9 +18,9 @@ create table users(
 );
 
 create table likes (
-	id INT(11) AUTO_INCREMENT PRIMARY,
+	id INT(11) AUTO_INCREMENT PRIMARY KEY,
 	userName VARCHAR(60) ,
-	post_id INT(11),
+	post_id INT(11)
 );
 
 
@@ -37,7 +37,7 @@ create table posts (
 
 
 create table post_comments (
-	id INT(11) AUTO_INCREMENT PRIMARY,
+	id INT(11) AUTO_INCREMENT PRIMARY KEY,
 	post_body TEXT,
 	posted_by VARCHAR(60),
 	posted_to VARCHAR(60),

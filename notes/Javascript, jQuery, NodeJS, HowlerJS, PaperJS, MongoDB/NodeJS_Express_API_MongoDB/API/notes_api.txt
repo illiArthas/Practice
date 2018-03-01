@@ -173,16 +173,16 @@
 		<h5>You are in the home page. Search for Movie</h5>
 		
 
-<br>
+		<br>
 
 
 		<form action="/results" method="GET">
    
-			<input type="text" placerholder="Movie name" name="term"></input>
+			<input type="text" placerholder="Movie name" name="search"></input>
 			
-<button>Submit</button>
+			<button>Submit</button>
 		
-</form>
+		</form>
 
 
 

@@ -103,6 +103,16 @@ colours.neilorangepeel.com		// color website
 							// if you change nth-of-type(even), it will select every even li 
 			}
 
+		/* This means all the 'i' tags with the class 'icon' */
+		i.icon {
+			font-size: 2em;
+		}
+
+		/*   This gets all the classes with container and main ONLY */
+		.container.main {
+			margin-top: 7.0em;
+		}
+
 
 ** Font **
 	
@@ -133,6 +143,28 @@ colours.neilorangepeel.com		// color website
 	text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
 				 0px 8px 13px rgba(0,0,0, 0.1),
 				 0px 18px 23px rgba(0,0,0,0.1);
+
+
+
+** BORDER - Box Model **
+
+	padding - is the space inside the border
+	margin - is the opposite, outside the border	
+	width - self explanatory
+	height - self explanatory	
+
+
+	margin: 20px 40px 500px 30px;	// this goes from top, right, bottom, left.
+	margin: 0 auto 0 auto;		// using auto from left and right centers the border
+	margin: 0 auto;			// this is a short-cut to the above example, means top, bottom 0 and left, right auto
+
+** float **
+	float: left;
+
+	it will take the elements out of the normal flow of the document, so it's gonna float up and move on the same-line on the left.
+
+
+
 
 
 

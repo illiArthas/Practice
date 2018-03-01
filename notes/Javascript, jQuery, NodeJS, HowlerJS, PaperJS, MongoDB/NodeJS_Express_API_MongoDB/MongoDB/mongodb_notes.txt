@@ -146,9 +146,19 @@
 			name: String,
 			age: Number,
 			temperament: String
+
+			// this here below creates the date when its created
+			created: {type: Date, default: Date.now}
+
+			// This will create a default age if it wasn't specified
+			age: {type: Number, default: 10}
+
+			// this will create a default image if it wasnt specified
+			picture: {type: String, default: "defaultpic.png"}
 		});
 
 		// the "Cat" word creates/ uses the 'Cat' collection(table)
+		// BUT the "Cat" word will turn into 'cats' in the database
 		// it converts it into a model, so you can use methods to manipulate data
 		
 		var Cat = mongoose.model("Cat", catSchema);
@@ -219,7 +229,7 @@
 	* Example of loading data from database to page *
 
 		app.get("/", function(req, res) {
-			campGroundModel.find({}, function(err, dataReturned) {
+			Cat.find({}, function(err, dataReturned) {
 				
 				if (err) {
 					console.log("There was an error " + err);

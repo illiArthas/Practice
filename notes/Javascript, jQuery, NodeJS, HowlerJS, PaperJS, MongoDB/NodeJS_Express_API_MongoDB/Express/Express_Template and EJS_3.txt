@@ -72,7 +72,18 @@
 			
 		=================  =================  =================  =================  ====
 
-		<%-  %>
+		<%-  %> - This here evaluates the string, so if there were html tags
+			  Then this here will display the text, and apply html tags
+
+			  For example: 
+
+			  Using <%= Levi <strong>Hugo</strong> %> will display: 
+					
+					"Levi <strong>Hugo</strong>" as a string
+
+			  But if we use <%- Levi <strong> Hugo </strong> %> will display:
+			
+					"Levi  Hugo" but 'Hugo' will be in bold
 
 		
 ** To send dynamic data **
@@ -123,16 +134,14 @@
 		
 
 <% for (var i = 0; i < postArray.length; i++) { %>
+		
 
-			
+	<li>  
+		Title: <%= postArray[i].title %>    Author: <%= postArray[i].author %>  
+	</li>
 
-<li>  
-				Title: <%= postArray[i].title %>    Author: <%= postArray[i].author %>  
-			</li>
-
-	    
-	
-		<% } %>
+	    	
+<% } %>
 
 
 
