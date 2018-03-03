@@ -4,10 +4,11 @@
 4. npm install request --save
 5. npm install mongoose --save
 6. (OPTIONAL for using 'PUT' and 'DELETE') npm install method-override --save
+7. npm install express-sanitizer --save
 
 OR
 
-1. npm install --save express ejs body-parser request mongoose
+1. npm install --save express ejs body-parser request mongoose express-sanitizer
 
 
 Notes for each steps
@@ -22,4 +23,6 @@ Notes for each steps
 
 5. MongoDB folder, then open the text file (Mongoose is for the database)
 
-6. Express folder, then open Express_post_put_delete_requests_4.txt
+6. Express folder, then open 4_Express_post_put_delete_requests.txt
+
+7. Express folder, then open 5_Express_sanitizer_link_to_diff_folder.txt

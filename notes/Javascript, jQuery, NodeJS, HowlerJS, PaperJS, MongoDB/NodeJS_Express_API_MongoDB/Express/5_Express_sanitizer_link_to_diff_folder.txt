@@ -1,0 +1,28 @@
+** Link to different folder **	
+
+	var express = require("express");
+	var app = express();
+
+	app.use(express.static("myCSSFolder"));	
+
+
+** Using Express-sanitizer **
+
+	// require
+	var expressSanitizer = require("express-sanitizer");
+
+	// tell app to use it, and make sure its AFTER body-parser
+	app.use(bodyParser.urlencoded({extended: true}));
+	app.use(expressSanitizer());
+
+	// sanitize is often used with <%- %>, this is to avoid scripts we dont want running
+	// using sanitize is very simple, simply use req.sanitize() and put the text inside the param
+	// this sanitizes the text and removes all the script tags, while still running html tags
+
+	var sanitizedText = req.sanitize(req.body.blog.thisText);
+
+	// better example is 
+
+	var thisText = "My coolest enemy <script>alert('I hacked you!')</script>";
+	var sanitizedText = req.sanitize(thisText);
+
