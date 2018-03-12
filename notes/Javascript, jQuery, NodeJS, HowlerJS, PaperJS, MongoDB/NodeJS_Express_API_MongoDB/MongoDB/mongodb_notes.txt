@@ -42,10 +42,14 @@
 
 ** To use **
 
-	use demo 	// demo is the name of the database
+	// To create an existing database you can just type: 
+		use myDatabase
+
+	// To use a database named 'demo'
+		use demo 
 
 
-** To insert data **
+** To insert data OR create collections(table) **
 
 	// db = database that was 'used'
 	// dogs is the 'table' if it doesn't exist, it will automatically create it
@@ -53,20 +57,23 @@
 	// table are called collections in mongodb
 
 	// mongo automatically assigns a unique objectID
+		db.dogs.insert({name: "Levi", lastName: "Hugo"});
 
-	db.dogs.insert({name: "Levi", lastName: "Hugo"});
+	// If you just want to create a collection(table) without inserting the data
+		db.createCollection('myTable');
 
 
 ** To find data **
 
 	// shows all of the collections(tables)
-	show collections
+		show collections
 
 	// shows information about the dogs table, in mysql it looks like SELECT * FROM dogs
-	db.dogs.find();
+		db.dogs.find();
+		db.dogs.find().pretty(); // this makes it look nicer
 
 	// this is how you search for a data, in mysql it looks like SELECT * FROM dogs WHERE name='Levi'
-	db.dogs.find({name: "Levi"});
+		db.dogs.find({name: "Levi"});
 
 
 ** To update data **	
@@ -148,20 +155,51 @@
 			temperament: String
 
 			// this here below creates the date when its created
-			created: {type: Date, default: Date.now}
+			created: {type: Date, default: Date.now},
 
 			// This will create a default age if it wasn't specified
-			age: {type: Number, default: 10}
+			age: {type: Number, default: 10},
 
 			// this will create a default image if it wasnt specified
-			picture: {type: String, default: "defaultpic.png"}
+			picture: {type: String, default: "defaultpic.png"},
+
+			// REQUIRES a field to be inserted
+			lastName: {type: String, required: true}
 		});
 
 		// the "Cat" word creates/ uses the 'Cat' collection(table)
 		// BUT the "Cat" word will turn into 'cats' in the database
 		// it converts it into a model, so you can use methods to manipulate data
 		
-		var Cat = mongoose.model("Cat", catSchema);
+			var Cat = mongoose.model("Cat", catSchema);
+
+
+	* Making models encapsulated (accessed from a folder, instead of inside app.js) *
+		1. First make a new .js file i.e. myModel.js
+	
+		2. Inside, require mongoose, then make the schema, then model
+
+		3. Making model accesible from anywhere else, just add 'module.exports'
+			var Cat = module.exports = mongoose.model("Cat", catSchema);
+
+		4. Create a function about the model, so it can be accessed in the app.js
+			module.exports.getCats = function(callback, limit) {
+				Cat.find(callback).limit(limit);
+			};
+
+		5. Inside the app.js, require the myModel.js, then use the function
+
+			Cat = require('./models/myModel.js');
+
+			app.get("/cat", function(req, res) {
+				Cat.getCats(function(error, dataReturned) {
+					if (error) {
+						throw error;
+					} else {
+						res.json(dataReturned);
+					}
+				});
+			});
 
 		
 	* To add a new data *

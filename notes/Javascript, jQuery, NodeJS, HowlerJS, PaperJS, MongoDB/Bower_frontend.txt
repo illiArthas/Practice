@@ -1,0 +1,30 @@
+** Bower **
+
+	Bower is pretty much the same as npm, but for front-end 
+	so npm is for downloading packages on the server-side,
+	while bower is for downloading front-end packages.
+
+
+** Using Bower **
+
+	First npm install it:
+
+		npm install -g bower
+
+	CD into the projects folder, then install i.e. Bootstrap Angular and jQuery:
+
+		bower install --save bootstrap angular jquery
+
+	After installing, just link them in your file, the files are inside bower_compontents folder
+
+		i.e.    <script src="bower_components/angular/angular.js"></script>
+		
+				OR
+
+			<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
+
+
+
+
+
+

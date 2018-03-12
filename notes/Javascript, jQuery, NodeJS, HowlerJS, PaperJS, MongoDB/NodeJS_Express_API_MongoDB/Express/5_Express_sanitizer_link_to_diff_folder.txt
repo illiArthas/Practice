@@ -5,6 +5,10 @@
 
 	app.use(express.static("myCSSFolder"));	
 
+	OR OR 
+
+	app.use(express.static(__dirname + "/myFolder"));
+
 
 ** Using Express-sanitizer **
 

@@ -1,0 +1,137 @@
+** Media query **
+
+	** Important Note **
+
+	Make sure that the media queries are after all of the classes or at the bottom of the page
+	This is because it uses the created classes as default.
+
+
+	// This is an embedded way of using media queries
+
+	* For max width (anything BELOW the set width) *
+
+		@media all and (max-width: 600px) {
+			.myClass {
+				width: 200px;
+			}
+
+		}
+
+	OR
+
+		@media (max-width: 600px) {
+
+		}
+
+
+	* For min width (anything ABOVE the set width) *
+	@media all and (min-width: 600px) {
+
+
+	}
+
+	* For setting min and max width
+
+	@media (min-width: 400px) and (max-width: 800px) {
+
+	}
+
+
+** To use it in a different file **
+	// This is external way of using media queries
+	// This is runs the small.css file when the screen width is below 600px
+
+	<link rel="stylesheet" type="text/css" href="small.css" media="(max-width: 600px)">
+
+
+
+** Media PRINT and 'not' **
+
+	// The idea is when a user wants to print, then the navigation bar will be removed
+	// This is because navigation bar is not needed for printing, and it also
+	// saves the user space when printing.
+
+	@media print {
+		nav {
+			display: none;
+		}
+	}
+
+
+	// Alternatively, you can use the 'not' operator
+	// Below example pretty much means, anything that is not a screen
+	// do the things below, so when the user goes into print mode or anything else
+	// it will run all of the code below
+
+	@media not screen {
+		nav {
+			display: none;
+		}
+	}
+
+
+	// anything that is not a screen, but anything that is a screen that is less than 400px
+	@media not screen, screen and (max-width: 400px) {
+
+	}
+
+
+** Overlapping **
+	* Note that the order matters when overlapping *
+
+	@media (min-width: 300px) {
+		div {
+			color: red;
+			border: 2px solid blue;
+		}
+	}
+	
+	@media (min-width: 600px) {
+		div {
+			/*	This media query automatically uses the media query above because they overlap	*/
+			/* color: red; */
+			/* border: 2px solid blue */
+			border-radius: 5px
+		}
+	}
+
+ 	@media (min-width: 900px) [
+		div {
+			/*	This media query automatically uses the media query above because they overlap	*/
+			/* color: red; */
+			/* border: 2px solid blue */
+			/* border-radius: 5px */
+			...
+		}		
+	}
+
+** Individual/Back-to-back **
+
+	// Notice how they max-width doesn't overlap the next media query
+	// by doing this classes will not automatically use the media query before it
+
+	@media (min-width: 300px) and (max-width: 599px) {
+		div {
+			color: red;
+			border: 1px solid red;
+		}
+	}
+
+	@media (min-width: 600px) and (max-width: 899px) [
+		div {
+			color: red;
+			border-radius: 5px;
+		}
+	}
+
+	@media (min-width: 900px) {
+		div {
+			color: orange;
+			border-radius: 10px;
+		}
+	}
+
+
+
+
+
