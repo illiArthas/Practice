@@ -1,4 +1,0 @@
-Public Outlander(int wheels, int doors, int gears, boolean isManual, int roadServiceMonths){
-	super("Outlander", "4WD", wheels, doors, gears, isManual);
-	this.roadServiceMonths = roadServiceMonths;
-}
