@@ -1,0 +1,163 @@
+** Including jQuery **
+	Download jQuery and link to it locally 
+		<script type="text/javascript" src="jquery-2.1.4.js"></script>
+		OR	OR	OR	OR	OR	OR	OR	OR
+	Link to a CD(a hosted copy) - To look for a jQuery cdn, search up "cdn jQuery" on google
+		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.js"></script>
+
+** jQuery Preview **
+	// When a user clicks the button with id 'trigger'
+	$('#trigger').click(function() {
+
+		// changes the body's background color to green
+		$('body').css("background", "green");
+
+		// Fade out all img's over 3 seconds
+		$('img').fadeOut(function() {
+
+			// remove imgs from page when fadeOut is done
+			$(this).remove();
+		});
+	});
+
+** jQuery Selectors **
+	Selecting elements in jQuery is the same as using querySelector/querySelectorAll
+		// To select all img tags
+		$('img')
+
+		// to select all elements with class 'sale'
+		$(".sale")
+
+		// To select an element id
+		$("#myID")
+
+		// To select all a tags in a list
+		$("li a")
+
+		// To select the first element
+		$("li:first");
+			OR	OR
+		$("li").first()
+
+		// To select the last element
+		$("li").last();
+
+	* To manipulate css style using jQuery, you use .css(), for example:
+
+		// Select element id of special and give it a background of yellow
+		$("#special").css("background", "yellow");
+
+		// You can also pass in an object with styles
+		var styles = {
+			backgroundColor : "pink",	// in css this looks like background-color: pink;
+			fontWeight: "bold"		// but in jQuery you have to use camelcase
+		};
+		$("#special").css(styles);
+
+
+** jQuery Methods **
+	.text()			// this is the same as using textContent in Javascript
+	.text("My new text")	// this is the same as textContent = "My new text"
+	
+	.html()			// this is the same as innerHTML
+	.html("<li>Cool</li>")	// this is the same as .innerHTML = "<li>Cool</li>";
+
+	.attr()			// this is either showing the attribute, or manipulate attribute
+		example to change the img src of an image:	
+			<img src="coolCate.jpg">
+			$("img").attr("src", "wetPussy.png");	// This is how you do it
+			// You can change, add, view attributes
+
+	.val()			// this is the same as .value
+	.val("New value");	// this is the same as this.value = "New value"
+	.val("")		// this erases the value
+			
+	.addClass()		// this is the same as .classList.add()
+	.removeClass()		// this is the same as .classList.remove()
+	.toggleClass()		// this is the same as .classList.toggle()
+	
+
+** jQuery Events **
+	.click() 
+		example:
+		$("#submit").click(function() {
+			console.log("I've been clicked!");	// console logs
+		});	
+
+		$("button").click(function() {
+			alert("Someone clicked a button");	// alerts when any button is clicked
+		});
+
+		// Below replaces the color of the element that's clicked using 'this'
+		$("button").click(function() {
+			// THIS WON'T WORK
+			this.css("background-color", "yellow");	
+			
+			// It needs to be like the one below
+			$(this).css("background-color", "yellow");
+			
+		});
+
+		// Another example, try to understand it yourself
+		$("button").click(function() {
+			var thisText = $(this).text();		// remember text() is similar to innerHTML
+			console.log("You clicked " + thisText);
+		});
+
+
+	.keypress(), .keydown(), .keyup()	// this is the same as keydown, keypress, keyup 
+
+	.on()	// this works similarly to addEventListener. It lets you specify the type of event to listen for
+		example:
+			// click
+			$("#submit").on("click", function() {
+				console.log("Another click");
+			});
+
+			// double click
+			$("#submit").on("dblclick", function() {
+				console.log("Another click");
+			});
+
+			// drag start event
+			$("#submit").on("drgstart", function() {
+				console.log("Another click");
+			});
+
+			// On mouse enter, this is the same as css hover
+			$("button").on("mouseenter", function() {
+				console.log("Mouse entered");
+			});
+
+
+
+	// ul is the parent element that exists, but it's actually listening for an li click
+	$("ul").on("click", "li", function() {
+		$(this).toggleClass("clicked");
+	});
+	
+
+** jQuery Effect **
+
+	.fadeOut()	// fades out an element, opacity goes from 1 to 0, it doesn't delete, but just hides
+		example:
+			$("button").on("click", function() {
+				$("li").fadeOut("slow");	
+				// parameter can be 4000, which is 4 seconds
+				// using a function inside the fadeOut() guarantees that the function will ONLY
+				// run once the element has fully fadedout
+				$("li").fadeOut("slow", function() {
+					// Do something inside
+					$(this).remove();	// this removes the elements after fading out
+				});
+			});
+
+	.fadeIn()	// exactly the same as fadeout, but it fades element in
+	.fadeToggle()	// exactly the same as fadeIn and fadeOut, but toggles between them. Similar to, classList.toggle()
+
+	.slideDown()	// SHOWS the element(s), and the animation is sliding down
+	.slideUp()	// HIDES element(s), and the animation is sliding up
+	.slideToggle()	// Toggles between slideDown and slideUp
+
+	.append()	// this adds an element to another element
+		example:	$("ul").append("<li>This is cool</li>");	// this adds an li to the ul

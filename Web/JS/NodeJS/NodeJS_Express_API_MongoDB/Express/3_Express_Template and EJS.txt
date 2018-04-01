@@ -1,0 +1,202 @@
+** Rendering HTML and Templates **
+
+	- Use res.render() to render HTML (from an EJS file)
+	- Pass variables to EJS templates
+
+	Instead of writing this:
+
+		app.get("/", function(req, res) {
+    
+			res.send("<h1>Welcome to LA</h1>");
+
+		});
+
+
+
+	You can write:
+
+		app.get("/", function(req, res) {
+ 
+
+			// myPage.html is being rendered,
+			// But file extension needs to be
+			// change to .ejs for it to be dynamic
+
+			res.render("myPage.ejs");	
+		});
+
+
+
+** To install ejs **
+
+		npm install ejs
+
+
+** Very important **
+
+		// Express by default will automatically find .ejs files inside a 
+		// folder called "views"
+
+
+** EJS tags **
+
+		<%=  %> - This is used if you want to add a data to the page:
+			  <h1> Hi there your name is <%= myName%> </h1>
+
+		=================  =================  =================  =================  ====
+
+		<%  %> - This is used for logical statements such as, if, while, for, etc.
+			 And you have to use this every single line of the logical statement.
+
+			 However, contents inside the statements don't need to be inside
+			 the tag <% %>, only the logical statement need to be.
+			 In short, it just evaluates code.
+
+			 It's very tricky, but it looks like:
+
+			 <% 	if (myData === 35) { 	%>
+					<p>Your number is 35!</p>
+			 <% 	} else { 		%>
+					<p>Your number is NOT 35 </p>
+			 <% 	} 	 		%>
+
+			 // Spaces between <% and if statement don't need to be that much
+			 // I'm only doing it, so it easier to see. In reality it looks like:
+
+			 <% if (myData === 35) { %>
+				<p>Your number is 35!</p>
+			 <% } else { %>
+				<p>Your number is NOT 35 </p>
+			 <% } %>
+
+			
+		=================  =================  =================  =================  ====
+
+		<%-  %> - This here evaluates the string, so if there were html tags
+			  Then this here will display the text, and apply html tags
+
+			  For example: 
+
+			  Using <%= Levi <strong>Hugo</strong> %> will display: 
+					
+					"Levi <strong>Hugo</strong>" as a string
+
+			  But if we use <%- Levi <strong> Hugo </strong> %> will display:
+			
+					"Levi  Hugo" but 'Hugo' will be in bold
+
+		
+** To send dynamic data **
+
+		// You need to use,  <%=  %> to make a page dynamic
+
+		// This will be in the main.js file		
+		app.get("/dognames/:favColor", function(req, res) {
+ 
+
+			var myData = "Hello my name is Marian Montesclaros";
+
+			res.render("myPage.ejs", {sendData: myData});	
+		});
+
+
+
+		// AND this will be in the myPage.ejs
+
+		<h1>Hi what is your name?  <%= sendData %></h1>
+
+		// This page will show: 
+
+		Hi what is your name? Hello my name is Marian Montesclaros
+
+		// It is just regular javascript, so if you use sendData.toUpperCase();
+		// It will look like:
+
+		Hi what is your name? HELLO MY NAME IS MARIAN MONTESCLAROS
+
+
+** To send dynamic data (Array) **
+
+		app.get("/posts", function(req, res) {
+			var posts = [
+				{title: "I love you mush", author: "Levi"},
+				{title: "I love you too mush", author: "Marian"}.
+				{title: "You have to follow me", author: "Kruella"}
+			];
+
+			res.render("allPosts.ejs", {postArray: posts});
+		});
+
+		// Inside the allPosts.ejs
+
+		<h1>You are in the allPosts.ejs</h1>
+		
+		
+
+<% for (var i = 0; i < postArray.length; i++) { %>
+		
+
+	<li>  
+		Title: <%= postArray[i].title %>    Author: <%= postArray[i].author %>  
+	</li>
+
+	    	
+<% } %>
+
+
+
+** Note **
+	// By using this you do not need to type ".ejs" when using res.render();
+	app.set("view engine", "ejs");
+
+	It will look like
+
+	app.get("/myDog", function(req, res) {
+		res.render("myPage");	// Instead of res.render("myPage.ejs");
+	});
+
+
+** Partials/Layouts **
+
+	Instead of creating the whole html boiler plate i.e. <!DOCTYPE html> and the rest of it
+	You can use Partials to only create the header and the footer, then put all dynamic
+	content in the middle.
+
+	1. First create the header.ejs and it should contain:
+
+		<!DOCTYPE html>
+		<html>
+			<head>
+				<title></title>
+				<link rel="stylesheet" type="text/css" href="/myCss.css">
+				// Just remember when using href="" that you HAVE to first
+				// use '/' before the name of the css file, for example
+				// href="/myCSS.css", instead of href="myCSS.css"
+			</head>
+
+			<body>
+
+	2. Then create the footer.ejs and it should contain:
+
+			</body>
+		</html>
+
+	3. Just remember that these two SHOULD be in the 'views' folder
+	4. To link them just do:
+
+		<% include header.ejs>		// you don't need .ejs if you set view engine to ejs
+
+		<h1> You fell in love with me!</h1>
+			<li>Yay</li>
+			<li>Coolies!</li>
+
+		<% include footer.ejs>
+
+	5. This is literally the same as include/require in PHP
+
+	
+
+
+
+
+

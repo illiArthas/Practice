@@ -1,0 +1,324 @@
+** Java Notes 1 **
+
+	** void **
+		The void keyword indicates that no value should be returned by the method after it executes all the logic in the method. 
+		If we do want the method to return a value after it finishes running, we can specify the return type.
+		
+		The void keyword (which means "completely empty") indicates to the method that no value is returned after calling that method.
+
+	** Notes **
+		Class: a blueprint for how a data structure should function
+		Constructor: instructs the class to set up the initial state of an object
+		Object: instance of a class that stores the state of a class
+		Method: set of instructions that can be called on an object
+		Parameter: values that can be specified when creating an object or calling a method
+		Return value: specifies the data type that a method will return after it runs
+		Inheritance: allows one class to use functionality defined in another class
+
+	** Data types in Java **
+		* boolean - true or false
+		* int - it allows values between -2,147,483,648 and 2,147,483,647.
+		* char - short for character, all char values must be in single quotes, like 'L'
+		* float - proper way of declaring is: float myFloat = 5.25f;	// f indicates that this is a float
+		* double - proper way of declaring is: double myDouble = 5.25d;	// d indicates that this is a double
+
+	** Comment **
+		// Single line comment
+
+		/* 
+			Multi-line comment bruh!
+		*/
+
+
+	** printf **
+		System.out.printf("Your interest rate from %d is %.2f \n", i, calculateInterest(10000.0,i));
+		// the %.2f means its two decimal places
+		
+		System.out.println("10,000 at " + i + String.format("%.2f", calculateInterest(10000.0, i)));
+		// This is a way to use String.format
+
+	** if / else if / else AND ternary conditional statement**
+		* if statement example
+		
+			int shoeSize = 10;
+
+			if (shoeSize > 12) {
+   				 System.out.println("Sorry, your shoe size is currently not in stock.");
+			} else if (shoeSize >= 6) {
+   				 System.out.println("Your shoe size is in stock!");
+			} else {
+    				System.out.println("Sorry, this store does not carry shoes smaller than a size 6.");
+			}
+			
+		* ternary conditional example
+
+			int pointsScored = 21;
+
+			char gameResult = (pointsScored > 20) ? 'W' : 'L';
+			System.out.println(gameResult);
+				// Above example, the int variable called 'pointsScored' is equal to '21'
+				// The Boolean expression is (pointsScored > 20), which evaluates to 'true'
+				// This will return the value of 'W' which is assigned to the variable 'gameResult'
+				// The value 'W' is printed to the console.
+
+	** SWITCH STATEMENT **
+			
+		int restaurantRating = 3;
+
+		switch (restaurantRating) {
+
+    			case 1: 
+				System.out.println("This restaurant is not my favorite.");
+     				break;
+
+   			case 2: 
+				System.out.println("This restaurant is good.");
+      				break;
+
+    			case 3: 
+				System.out.println("This restaurant is fantastic!");
+      				break;
+
+    			default: 
+				System.out.println("I've never dined at this restaurant.");
+      				break;
+		}
+
+			// Above example prints out "This restaurant is fantastic!"
+			// break statement will exit the switch statement after a condition is met. 
+			// Without the break statement, Java will continue to check whether the 
+			// value of restaurantRating matches any other cases.
+
+
+
+
+
+	** Java Operators **
+
+			== (equal to)
+	
+			!= (not equal to)
+
+			> (greater than)
+
+			< (less than)
+
+			>= (greater than or equal to)
+
+			<= (less than or equal to)
+
+
+
+	** Precedence of each Boolean operator **
+
+		1. '!' is evaluated first
+		2. '&&' is evaluated second
+		3. '||' is evaluated third
+
+		example :
+			System.out.println( !(false) || true && false);
+				// Above example prints out 'true' because 
+				// First, the ! Boolean operator in !(false) returns true.
+				// Second, true && false evaluates to false.
+				// Finally, the remaining expression true || false evaluates to true.	
+
+
+	* Based on Codeacademy Java *
+
+		To print: 
+			System.out.println("Hello world");  // This outputs "Hello world" on the screen.
+
+		To declare an int variable:
+			int myNumber = 21;
+		
+		To declare a boolean:
+			boolean myBoolean = true;
+		
+		
+		Single line comment:
+			// I'm a single line comment!
+		Multi-line comment:
+			/* 
+				Multi-line comment bruh!
+			*/
+
+		! not operator:
+			System.out.println( !(4 <= 10) );
+				// Above example will print out 'false' because the statement 
+				// '4' is less than '10' is 'true', but the '!' operator will return the opposite
+				// value, which is false.
+
+		
+			
+
+
+
+		** Object-Oriented Programming **
+
+			* How to create a class, constructor, methods *
+			
+				class MyClass {
+
+					int classYear;		// this is how you create an instance of a class
+					
+					public MyClass (int year){
+								// This is how you make a constructor for the class 'MyClass'
+
+						classYear = year;	// This here sets the instance of classYear into the 'year' parameter.
+					}
+
+					// Below is how you make a method WITHOUT paremeters
+						
+					public void favYear(){
+						System.out.println("The best class for me in High school was 10HG in 2010");
+					}
+
+
+					// Below is how you make a method WITH paremeters
+
+					public void worstYear(int leastFav){
+						System.out.println("My least favourite class in High school was in year " + leastFav);
+					}
+
+				}
+			
+			* To create an object, and to call a method *
+
+				using the above class MyClass, we create an object of that class like this:
+
+					public static void main(String[] args){
+						// To create an object of a class we first need to be inside the main function, and then create it, like this:
+						MyClass yearEleven = new MyClass(2011);
+
+						
+						// To call a method that doesn't have a parameter
+						yearEleven.favYear();		// This outputs	"The best class for me in High school was 10HG in 2010"
+						
+
+						// To call a method that has a parameter
+						yearEleven.worstYear(2012);	// This outputs "My least favourite class in High school was in year 2012"
+
+
+					}
+		
+			* Inheritance *
+				One of the object-oriented programming concepts that allows us to reuse and maintain code more efficiently is called inheritance. 
+				It is used to share or inherit behavior from another class. Let's look at an example:
+				
+				class Car extends Vehicle {					
+
+   					 int modelYear;
+
+   					 public Car(int year) {
+        					modelYear = year;
+    					}
+	
+
+   				 //Other methods omitted for brevity...
+
+   				public static void main(String[] args){
+
+        				Car myFastCar = new Car(2007)			// We create an object myFastCar of the class Car
+        				myFastCar.checkBatteryStatus();			// outputs "The battery is fully charged and ready to go!"
+
+    				}
+				}
+
+				// Below is the Vehicle class
+				class Vehicle {
+   					 public void checkBatteryStatus() {
+        					System.out.println("The battery is fully charged and ready to go!");
+    					}
+				}
+				
+				The extends keyword is used to indicate that the Car class inherits the behavior defined in the Vehicle class. 
+				This makes sense, since a car is a type of vehicle.
+
+
+		** Array List **
+
+			* To create an int arraylist
+				ArrayList<Integer> myArray = new ArrayList();	// Make sure it's 'Integer' not 'int'
+
+			* To insert something into an array list
+				myArray.add(21);	// Adds the int '21' inside index 0
+				myArray.add(22);	// Adds the int '22' inside index 1
+
+			* If you want to insert to a specific position of an array list
+				myArray.add(1, 25);	// This adds the number '25' in the 1 index, so now the number 22 will be in the index number 2 ^ Look at previous example if you don't get it
+
+			* To view the length/size of an array list
+				myArray.size();
+				
+			* To access an arrayList item
+				mhyArray.get(0);	// This gets the number '21'
+
+			* Using a for each loop for an array list
+				for(Integer myNum : myArray){
+					System.out.println(myNum);	// This outputs every element in the array 'myArray'
+				}
+
+		** Hash Map **
+		
+		Although the name of the data structure might not make sense to you immediately, think of it as a real-life dictionary. 
+		A dictionary contains a set of words and a definition for each word. A HashMap contains a set of keys and a value for each key. 
+		If we look up a word in a dictionary, we can get the definition. If you provide a HashMap with a key that exists, you can retrieve the value associated with the key.
+			
+			* Hash Map example
+				
+			HashMap<String, Integer> hostCities = new HashMap<String, Integer>();		
+			// In the above example we create a HashMap object called 'hostCities'. The 'hostCities' HashMap will store keys of String data types and values of type Integer.
+
+			* To add keys and values to a hash map
+				myFriends.put("Mark", 24);
+				myFriends.put("Cassandra", 25);
+				myFriends.put("Zenas", 21);
+
+			// In the example above, we used the put method to add a String key and an associated Integer value. 
+			// The String key is the text inside double quotes " ". The Integer value is represented by the number.
+
+			* To access data in an ArrayList, we specified the index. In order to access a value in a HashMap, we specify the key:
+
+				System.out.println( myFriends.get("Zenas") );	
+				// we call the get method on the myFriends HashMap using the key "Zenas". 
+				// The console will print the value associated with "Zenas" which is 21.
+
+			* We can also access properties of a HashMap, such as the number of entries or the contents of the HashMap.
+			
+				System.out.println( myFriends.size() );
+
+				for (String name: myFriends.keySet()) {
+
+   					 System.out.println(name + " is age: " + myFriends.get(name));
+
+				}
+
+				// In the example above, the size method of HashMap prints out the size of the myFriends instance. As a result, the console prints out 3 since there are 3 key-value pairs.
+				// Next, we use a for each loop to iterate over each key in myFriends. The keySet method of HashMap returns a list of keys.
+				// Inside the loop, we access the current key name and use the get method of HashMap to access the value. The console will print out the names and ages of each of my friends.
+
+			* Hash map last example (Try to understand what it does) *
+
+							HashMap<String, Integer> restaurantMenu = new HashMap<String, Integer>();	// Creates the hashmap
+	
+							restaurantMenu.put("Turkey Burger", 13);					// Creating a hashmap object
+							restaurantMenu.put("Naan Pizza", 11);
+							restaurantMenu.put("Cranberry Kale Salad", 10);
+
+							System.out.println(restaurantMenu.size());			// Prints the hashmap size of '3'
+
+							for (String item : restaurantMenu.keySet()) {		// for each loop
+
+								System.out.println("A " + item + " costs " + restaurantMenu.get(item) + " dollars.");
+
+							}
+				// This whole code outputs 
+				// "A Turkey Burger costs 13 dollars" 
+				// "A Naan Pizza costs 11 dollars"
+				// "A Cranberry Kale Salad costs 10 dollars"  
+
+			
+
+
+	* Based on Lynda *
+

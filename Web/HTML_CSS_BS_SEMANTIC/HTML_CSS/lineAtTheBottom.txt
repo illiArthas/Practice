@@ -1,0 +1,11 @@
+HR STYLE --- THIS IS A LINE
+
+https://codepen.io/ibrahimjabbari/pen/ozinB
+
+OR OR 	OR	OR	OR	OR OR
+
+
+CAN ALSO USE BORDER-BOTTOM to write a small line at the bottom.
+
+
+	simple hr is 	<hr>	// this simply creates a line 

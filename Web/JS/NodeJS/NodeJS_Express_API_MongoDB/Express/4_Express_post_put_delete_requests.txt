@@ -1,0 +1,132 @@
+** Post Requests in Express **
+
+	var express = require("express");
+	var app = express();
+
+	app.post("/addFriend", function(req, res) {
+		// This is how you get the data from the post 'newFriend' - req.body.newFriend
+		console.log(req.body.newFriend);
+		
+		// To redirect to the route "/friends"
+		res.redirect("/friends");
+	});
+
+	// Inside your html/ejs file
+
+	<form action="/addFriend" method="POST">
+		<input type="text" placeholder="Friend name" name="newFriend">
+		<button>I made a new friend!</button>
+	</form>
+
+
+** Need to install body-parser AND use it with Post request in Express/nodeJS**
+
+	var bodyParser = require("body-parser");
+	app.use(bodyParser.urlencoded({extended: true}));
+
+	// Using body-parser turns post data into an object
+	// If you don't use this, then the post data will be 'undefined'
+
+
+
+
+** Using PUT request in Express ** 
+
+	If you want to make a put request, 
+
+		- make sure to npm download method-override
+		
+		- npm install method-override --save
+
+		- require by, var methodOverride = require('method-override');
+		
+		- use by, app.use(methodOverride("_method"));	
+
+		- methodOverride("_method") '_method' can be named whatever, this just means if it finds that specific pattern then it's a method override
+
+		- make sure the method is 'POST'
+
+		- that you add ?_method=PUT  at the end of your routing
+
+		- by adding ?_method=PUT it overrides the method and uses a PUT request
+
+		- app.js it shoud look something like app.put("/blogs", function(req, res){});
+
+		<form action="/blogs/<%= blog._id %>?_method=PUT" method="POST">
+
+	
+	// Update route
+	
+	app.put("/blogs/:id", function(req, res) {
+    
+		// This finds the id and then updates the data
+    
+		// It takes 3 parameters findByIdAndUpdate(id, newData, callback)
+
+	
+    		Blog.findByIdAndUpdate(req.params.id, req.body.blog, function(err, updatedBlog) {
+
+		        if (err) {
+            
+				// Rdirects back to the blogs if there was an error
+		
+            			res.redirect("/blogs");
+   
+			} else {
+            
+				// This redirects back to the blog that was updated
+
+			        res.redirect("/blogs/" + req.params.id);
+		
+       		 }
+    
+		}); 
+
+	}); //Endof app.put
+
+
+** Using Destroy request in Express to destroy ** 
+
+	For DELETE you use: ?_method=DELETE
+
+	<form action="/blogs/<%= blog._id %>?_method=DELETE" method="POST">
+
+
+	// Delete route
+
+	app.delete("/blogs/:id", function(req, res) {
+
+		// .findByIdAndRemove() takes 2 parameters, 1 = id, 2 = callback
+		// Usually we would have a function(err, data) 2 params
+		// but in this case we don't need data being returned since we are deleting
+
+		Blog.findByIdAndRemove(req.params.id, function(err) {
+			if (err) {
+				res.redirect("/blogs");
+			} else {
+				res.redirect("/blogs");
+			}
+		});
+	});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	

@@ -1,0 +1,22 @@
+A good Exercise is to change all <a> tags in google.com
+
+	1. firstly, go to www.google.com
+	2. inspect -> console
+	3. select all <a> tags:
+		var aTag = document.getElementsByTagName("a");
+
+		once this is completed depending on the size of the a tags
+		it will have lets say '56' a tags.
+
+	4. Loop through it and change font color and add a border
+		for (var i = 0; i < aTag.lengh; i++) {
+			aTag[i].style.color = "red";
+			aTag[i].style.border = "1px solid black";
+		}
+	5. Watch yourself be amazed.
+
+
+	Bonus. You can loop through every <a> tag and see all their links by :
+		for (var i = 0; i < aTag.length; i++) {
+			console.log(aTag[i].getAttribute("href"));
+		}

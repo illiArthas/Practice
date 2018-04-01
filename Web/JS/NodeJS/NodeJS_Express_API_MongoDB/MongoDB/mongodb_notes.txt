@@ -1,0 +1,305 @@
+* MongoDB is NoSQL *
+
+** How to install **
+
+	First go into the root, then type these commands:
+
+	sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2930ADAE8CAF5059EE73BB4B58712A2291FA4AD5
+
+	echo "deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.6 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.6.list
+
+	sudo apt-get update
+	sudo apt-get install -y mongodb-org
+
+	mkdir data
+	echo "mongod --dbpath=data --nojournal" > mongod
+	chmod a+x mongod
+
+	
+** To run MongoDB **
+
+	Make sure you cd into the root~
+
+	Once in the root folder just type:  ./mongod
+
+
+** To repair **
+	
+	./mongod --repair
+	
+
+** To start **
+
+	To start mongo, open another terminal
+
+	then type: mongo
+
+	If you need to find commands, type: help
+
+** To show databases **
+
+	inside the mongo command, type: show dbs
+
+** To use **
+
+	// To create an existing database you can just type: 
+		use myDatabase
+
+	// To use a database named 'demo'
+		use demo 
+
+
+** To insert data OR create collections(table) **
+
+	// db = database that was 'used'
+	// dogs is the 'table' if it doesn't exist, it will automatically create it
+	// insert = inserts the data inside the dogs table
+	// table are called collections in mongodb
+
+	// mongo automatically assigns a unique objectID
+		db.dogs.insert({name: "Levi", lastName: "Hugo"});
+
+	// If you just want to create a collection(table) without inserting the data
+		db.createCollection('myTable');
+
+
+** To find data **
+
+	// shows all of the collections(tables)
+		show collections
+
+	// shows information about the dogs table, in mysql it looks like SELECT * FROM dogs
+		db.dogs.find();
+		db.dogs.find().pretty(); // this makes it look nicer
+
+	// this is how you search for a data, in mysql it looks like SELECT * FROM dogs WHERE name='Levi'
+		db.dogs.find({name: "Levi"});
+
+
+** To update data **	
+
+	// We use the .update() function in mongodb
+	// first parameter is to search which data to edit/update
+	// second parameter is the property to change
+	// in mysql it looks like, UPDATE dogs SET lastName='Dizon' WHERE name='Levi'
+	// but it will also delete the 'name' property
+	
+	db.dogs.update({name: "Levi"}, {lastName: "Dizon"});
+
+
+	// SO WE USE
+	// it keeps all the existing properties, and alters the 'lastName' property
+	// it also adds another property called 'loves'
+
+	// in mysql this is two commands, one is add another column to the table = ALTER TABLE dogs ADD loves
+	// the other is edit the 'lastName' property = "UPDATE dogs SET lastName='Dizon', loves='Marian' WHERE name='Levi'"
+
+	db.dogs.update({name: "Levi"}, {$set: {lastName: "Dizon"}, loves: "Marian"});
+
+
+** To remove data **
+
+	// This removes the data where the name is 'Levi'
+	// in mysql, DELETE FROM dogs WHERE name='Levi'
+
+	db.dogs.remove({name: "Levi"});
+
+** To delete a table(collection) **
+
+	// Simply type
+	db.myTable.drop()
+
+	// Or 
+	db.collection.drop();
+
+
+** Intro to Mongoose Library **
+
+	Mongoose is an Object Document Modeling (ODM) package for Express.
+	Think of it as jQuery for Javascript, it makes it easier to interact with the DOM,
+	but overall whatever jQuery can do Javascript can as well.
+
+	* To install *
+
+		npm install mongoose
+
+
+	* Connect to the database *
+
+		var mongoose = require("mongoose");
+
+		// 'cat_app' is the name of the database
+		mongoose.connect("mongodb://localhost/cat_app");
+
+
+	* To check if you're connected *
+
+		// In the second terminal (not the terminal from the ./mongod)
+		// node into the file i.e. 
+			node myFile.js
+
+		// if there's an error, then there will be a msg displayed,
+		// if not then there will be NO message
+
+
+	* To create a table(Schema) in mongoose *
+		
+		// This defines pattern to expect in mongoose
+		// a pattern in the database of properties with those data type
+		// This is similar to creating a table in mysql
+		// But this is defined in the js file, not in the database
+
+		var catSchema = new mongoose.Schema({
+			name: String,
+			age: Number,
+			temperament: String
+
+			// this here below creates the date when its created
+			created: {type: Date, default: Date.now},
+
+			// This will create a default age if it wasn't specified
+			age: {type: Number, default: 10},
+
+			// this will create a default image if it wasnt specified
+			picture: {type: String, default: "defaultpic.png"},
+
+			// REQUIRES a field to be inserted
+			lastName: {type: String, required: true}
+		});
+
+		// the "Cat" word creates/ uses the 'Cat' collection(table)
+		// BUT the "Cat" word will turn into 'cats' in the database
+		// it converts it into a model, so you can use methods to manipulate data
+		
+			var Cat = mongoose.model("Cat", catSchema);
+
+
+	* Making models encapsulated (accessed from a folder, instead of inside app.js) *
+		1. First make a new .js file i.e. myModel.js
+	
+		2. Inside, require mongoose, then make the schema, then model
+
+		3. Making model accesible from anywhere else, just add 'module.exports'
+			var Cat = module.exports = mongoose.model("Cat", catSchema);
+
+		4. Create a function about the model, so it can be accessed in the app.js
+			module.exports.getCats = function(callback, limit) {
+				Cat.find(callback).limit(limit);
+			};
+
+		5. Inside the app.js, require the myModel.js, then use the function
+
+			Cat = require('./models/myModel.js');
+
+			app.get("/cat", function(req, res) {
+				Cat.getCats(function(error, dataReturned) {
+					if (error) {
+						throw error;
+					} else {
+						res.json(dataReturned);
+					}
+				});
+			});
+
+		
+	* To add a new data *
+
+		// You can keep reusing this, because once the data has been added in the db
+		// you don't have to keep adding it again, so you can just change the details
+		// to add a new data to the database
+
+		var newCat = new Cat({
+			name: "George",
+			age: 32,
+			temperament: "Grouchy"
+		});
+
+
+		// .save() adds it to the database
+		// parameters can be named whatever you want
+		// param1 is error, param2 is what's being sent back from the db
+
+		newCat.save(function(err, cat) {
+			if (err) {
+				console.log("Couldn't add data to the db");
+			} else {
+				console.log("Added data to the db");
+
+				// this is the same as, db.cat.find()
+				console.log(cat);
+			}
+		});
+
+
+		OR OR OR
+
+		// Below is a quicker way of adding data to the database
+		Cat.create({
+			name: "Snow White", 
+			age: 15, 
+			temperament: "Apple"
+
+		}, function(err, data) {
+			if (err) {
+				console.log(err);
+			} else {
+				console.log(cat);	// shows the data from table
+			}
+		});
+		
+		
+	* To retrieve data from the database *
+
+		// This retrieves everything from the table(Collection) 'Cat'
+		Cat.find({}, function(err, data) {
+			if (err) {
+				console.log("Oh no, error");
+				console.log(err);
+
+			} else {
+				console.log("data found");
+				console.log(data);
+			}
+		});
+
+		// This returns an object
+
+	* Example of loading data from database to page *
+
+		app.get("/", function(req, res) {
+			Cat.find({}, function(err, dataReturned) {
+				
+				if (err) {
+					console.log("There was an error " + err);
+				} else {
+					res.render("myPage.ejs", {data: dataReturned});
+				}
+			});
+		});
+
+
+
+	* Example of posting data from a page to be save in a database *
+
+		app.post("/campground", function(req, res) {
+			// Gets the 'name' data from post
+			var name = req.body.name;
+			var image = req.body.image;
+
+			// Creates an object based on the posted data
+			var newData = {name: name, image: image};
+
+			// Adds the data to the database
+			campGroundModel.create(newData, function(err, data) {
+				if (err) {
+					console.log("Ooops something went wrong");
+					console.log(err);
+				
+				} else {
+					res.redirect("/campground");
+				}
+			});
+			
+		});
+
+	

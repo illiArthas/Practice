@@ -1,0 +1,195 @@
+** Application Programming Interface (API) **
+
+	API's are interfaces for code/computers to talk to one another.
+	Web API's generally communicate via HTTP
+
+** API's list **
+
+	ifttt.com
+	programmableweb.com
+
+** JSON and XML **
+	
+	JSON and XML are just both formats, and nowadays most applications support
+	both JSON and XML, but JSON is a more modern approach.
+
+	XML - Extended Markup Language XML is syntacticly similar to HTML, but it does 
+              not describe presentation like HTML. Meaning it's tags can be whatever 
+	      your name it to be.
+		
+		<person>
+			<age>21</age>
+			<name>Levi</name>
+			<city>Brisbane</city>
+		</person>
+
+
+	JSON - Javascript Object Notation, it looks exactly like Javascript Objects,
+	       but everything is a string.
+
+	       {
+		  "person": {
+			"age" : "21",
+			 "name" : "Levi",
+			"city" : "Brisbane"
+		  }
+	       }
+
+
+** How to make an http request using js **
+	
+	* You will need a package called 'request', download it using npm install request *
+
+		var request = require('request');
+
+	// request parameters - error is error, response is the status code response
+	// and body is the html data
+
+	// Usually on the first parameter where 'http://www.google.com' is, that's
+	// where you input the api url of something, so you can parse it into an object
+
+		request('http://www.google.com', function(error, response, body) {
+			
+			// If there was an error loading the url
+			if (error) {
+				console.log("OOPS something went wrong.");
+				console.log(error);
+
+			} else {
+				// HTTP status code 200 means the connection was OK
+				if (response.statusCode == 200) {
+					console.log(body);
+				}
+			}
+
+			// OR OR
+
+			if (!error && response.statusCode == 200) {
+				console.log(body);
+			}
+		});
+
+
+** Parsing JSON into a javascript Object **
+
+		This is how you parse a JSON data into an object:
+			JSON.parse(body);
+
+		It will look like
+		
+			request('http://www.google.com', function(error, response, body) {
+				var parseData = JSON.parse(body);
+				console.log(body);
+			});
+
+
+		To access data from the parse JSON data, you use ["propertyName"] or dot notation
+
+			console.log(parseData["query"]["count"]);
+			console.log(parseData.query.count);
+ 
+		// This accesses the first data from the query object
+			console.log(parseData["query"][0]);	
+
+
+** To traverse JSON array after parsing **
+	var data = JSON.parse(body);
+	res.render("myPage.ejs", {data: data});
+
+	
+	// Inside the myPage.ejs
+	// Using a for each loop
+		data["Search"].forEach(function(movie) {
+			console.log(movie["Title"]);
+		});
+
+	// Using a for loop
+		for (var i = 0; i < Object.keys(data["Search"]).length; i++) {
+			console.log(data["Search"][i]["Title"]);
+			// OR
+			console.log(data.Search[i].Title);
+		{
+	
+
+
+** To find api movie data **
+			sample apikey: 6019f227
+			
+			search for omdbapi.com
+
+			&apikey=thewdb is important and will need to be inputted
+			at the end of the api query
+
+			example search:	omdbapi.com?s=starwars&apikey=thewdb
+
+			using '&' is how you chain queries together
+
+
+
+**** Adding a search term instead of hard coding the api url ****
+
+	** In this example there are 3 files: index.ejs, results.ejs, and Home.ejs **
+
+	* Inside the index.js *
+
+		...
+		var app = express();
+		var request = require("request");
+
+		app.get("/", function(req, res) {
+			res.render("Home.ejs");
+		});
+
+		app.get("/results", function(req, res) {
+			// We got this value from the form inside Home.ejs
+			// The input name is 'search'
+
+			var queryResult = req.query.search;
+			var url = "http://www.omdbapi.com/?s=" + queryResult + "&apikey=thewdb";
+
+			request(url, function(error, response, body) {
+				// If there's no error and status code is 200
+
+				if (!error && response.statusCode == 200) {
+					var data = JSON.parse(body);
+					res.render("results.ejs", {data: data});
+				}
+			});
+		});
+
+	* Inside the results.ejs *
+
+		<h1>You are in the Results page</h1>
+
+		<% data["Search"].forEach(function(item) { %>
+			<li>	<%=  item.Title	%>	</li>
+		<% }); %>
+
+		<a href="/">This goes back to the home page</a>
+
+
+	* Inside the Home.ejs *
+
+		<h5>You are in the home page. Search for Movie</h5>
+		
+
+		<br>
+
+
+		<form action="/results" method="GET">
+   
+			<input type="text" placerholder="Movie name" name="search"></input>
+			
+			<button>Submit</button>
+		
+		</form>
+
+
+
+
+
+	
+
+
+
+

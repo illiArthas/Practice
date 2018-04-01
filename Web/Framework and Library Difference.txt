@@ -1,0 +1,11 @@
+** Difference Between a Framework and a Library **
+
+	Difference is Inversion of Control. It means that when you call a library
+	you are in control. But with a framework, the control is inverted, the framework
+	controls you. 
+
+	Basically, all the control flow is already in the framework,
+	and there's just a bunch of predefined white spots that you can fill out with
+	your code. 
+
+	A library on the other hand is a collection of functionality that you can call.

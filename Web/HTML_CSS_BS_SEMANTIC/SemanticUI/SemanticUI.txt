@@ -1,0 +1,66 @@
+	
+** When using semantic UI It's important to always type 'ui' before a 
+
+   class to let it know its a semantic UI class **
+
+
+
+** To link SemanticUI **
+
+	search for "semantic ui cdn"
+
+	if you want the whole library, then find the semantic.css file
+
+	OR
+
+	if you only want a small part of the library then copy that specific one
+
+	link it using: 
+
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/semantic.css">
+
+
+** TO make a simple nav-bar **
+
+	<div class="ui fixed inverted menu">
+
+            	<div class="ui container">
+ 
+               		<div class="header item">Blog Site</div>
+ 
+			<a href="/" class="item">Home</a>
+ 
+               		<a href="/blogs/new" class="item">New Blog</a>
+ 
+           	</div>
+ 
+       </div>
+		
+
+** To add an icon **
+
+	Go to https://semantic-ui.com/elements/icon.html
+
+	Then find an icon
+
+	to use it just use an 'i' tag, like <i></i>
+
+	For example the icon name is 'chart pie' what you do is
+
+	add the name as the class and then add the word 'icon' afterwards
+
+	<i class="chart pie icon"></i>
+
+
+** Semantic UI Buttons are cool **
+
+	https://semantic-ui.com/elements/button.html
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,18 @@
+** Java Hashing **
+
+	For this to work you will need to import:
+		java.security.MessageDigest;
+		java.xml.bind.DatatypeConverter;
+	
+	** Code **
+
+	String 	      myString 	= "Levi";
+	MessageDigest myDigest	= MessageDigest.getInstance("SHA-256"); //can be SHA-516, MD5, etc
+	
+	myDigest.update(myString.getBytes());
+	byte[] digestedString = myDigest.digest();
+
+	String	      hashed	= DatatypeConverter.printHexBinary(myDigest).toLowerCase();
+	
+	System.out.println(hashed);	// Outputs the hashed string
+	
