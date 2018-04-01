@@ -1,0 +1,92 @@
+/*	Part 1 Create the border, width, and the margin	*/
+#container {
+	width: 360px;
+	margin: 100px auto;
+	background-color: #f7f7f7;
+	box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+}
+
+/*	Part 2 - Toggle this class when an li is clicked on	*/
+.strike {
+	color: grey;
+	text-decoration: line-through;
+}
+
+/*	Part 3 - Add H1 styles	*/
+h1 {
+	background-color: #2980b9;
+	color: white;
+	margin: 0;
+	padding: 10px 20px;
+	text-transform: uppercase;
+	font-size: 24px;
+	font-weight: normal;
+}
+
+/*	PART 4 - Remove the bullet points*/
+ul {
+	list-style: none;		/*	This removes the bullet points	*/
+	margin: 0;
+	padding: 0;
+}
+
+/*	Part 5 - add background colour white to all li, and every second element will be a grey color (#f7f7f7)	*/
+li {
+	background-color: #fff;
+	height: 40px;
+	line-height: 40px;	/*	Gives the text a line height, so it's vertically centered	*/
+	color: #666;
+}
+li:nth-child(2n) {
+	background-color: #f7f7f7;
+}
+
+/*	Part 6 - Input styles and input focus */
+input {
+	font-size: 18px;
+	background-color: #f7f7f7;
+	width: 100%;
+	padding: 13px 13px 13px 20px;
+	box-sizing: border-box;
+	color: #2980b9;
+	border: 3px solid rgba(0, 0, 0, 0);	/*	This flushes the border */
+}
+input:focus {
+	background-color: #fff;
+	border: 3px solid #2980b9;
+	outline: none;
+}
+
+/*	Part 7 - get gradient color from uigradients.com  and paste it in the body */
+body {
+	-webkit-user-select: none; /* Chrome/Safari */ 
+	-moz-user-select: none; /* Firefox */
+	user-select: none;
+	
+	font-family: 'Roboto', sans-serif;
+	background: #093028;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #237A57, #093028);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #237A57, #093028); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+/* Part 8 Float the font awesome '+' icon to the right	*/
+.fa-plus {
+	float: right;
+}
+
+/*	Part 9 - Span styles and li:hover */
+span {
+	background-color: #e74c3c;
+		height: 20px;
+		width: 0;
+		margin-right: 20px;
+		text-align: center;
+		color: white;
+		display: inline-block;
+		opacity: 0
+}
+li:hover span {
+	width: 40px;
+	opacity: 1.0;
+	transition: 0.2s linear;
+}

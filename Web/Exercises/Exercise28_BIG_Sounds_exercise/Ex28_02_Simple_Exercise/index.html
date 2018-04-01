@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>PaperJS Exercise</title>
+	<link rel="stylesheet" type="text/css" href="css.css">
+	<script type="text/javascript" src="../paperJS/dist/paper-full.js"></script>
+	<script type="text/paperscript" canvas="marian">
+		var num = 0;
+		var cool = as();
+
+		for (var y = 40; y < 1040; y += 100) {
+			for (var x = 200; x < 1200; x += 100) {
+			//	var tr = new Path.RegularPolygon(new Point(x,y), 3, 16);
+			//	tr.fillColor = cool + num + ")";
+
+				// BOTH ARE THE SAME, but bottom is more efficient
+
+				new Path.RegularPolygon(new Point(x,y), 3, 16).fillColor = cool + num + ")";
+				num += 0.1;
+			}
+			num = 0;
+			cool = as();
+		}
+
+		function rand() {
+			return Math.floor(Math.random() * 256) + 1;
+		}
+
+		function as() {
+			return "rgba(" + rand() + ", " + rand() + ", " + rand() + ", ";
+		}
+		
+	</script>
+</head>
+<body>
+	<canvas id="marian" resize></canvas>
+</body>
+</html>
