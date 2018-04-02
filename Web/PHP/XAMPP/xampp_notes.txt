@@ -1,0 +1,20 @@
+** To create a new user or add a password to root account **
+
+	- Go to localhost/phpmyadmin
+	- Click 'User accounts'
+	- Edit privileges of root localhost
+	- Change password tab
+	- Then change password
+
+	Once all of the above is completed, you will need 
+	to configure xampp config to make it fully working
+	to do so:
+
+	- go to xampp folder
+	- phpmyadmin folder
+	- edit the config.inc.php file
+	- edit the password so it matches the root password you entered before
+	- Password is now configured for the user root
+
+
+	
