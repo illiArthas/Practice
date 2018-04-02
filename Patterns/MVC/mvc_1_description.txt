@@ -1,0 +1,34 @@
+
+**  Model View Controller (MVC) **
+
+	It is a pattern for organizing code in an application to improve maintainability.
+	It is a software architecture that separates domain/application/business logic from the rest of
+	the user interface. It does this by separating the application into three parts:
+
+		- Model
+		- View
+		- Controller
+
+	Model - manages fundamental behaviours and data of the application. It responds to requests
+		for information, respond to instructions to change the state of its information, and even to notify
+		observers in event-driven systems when information changes. This could be a database, or any
+		number of data structures or storage systems. In short, it is the data and data management of the
+		application.
+
+	View  - it provides the user interface element of the application. It'll render data from the model into
+		form that is suitable for the user interface.
+
+	Controller - recieves user input and makes calls to model objects and the view to perform appropriate actions
+
+
+	Example: Imagine a photographer with his camera in a studio. A customer asks him to take a photo of a box.
+
+		 The box is the model, the photographer is the controller and the camera is the view.
+
+		 Because the box does not know about the camera or the photographer, it is completely independent. 
+
+		 This separation allows the photographer to walk around the box and point the camera at any 
+
+		 angle to get the shot/view that he wants.
+	
+
