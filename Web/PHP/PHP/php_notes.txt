@@ -1,0 +1,144 @@
+** When using OOP PHP **
+
+	constructor:  public function __contruct($name, $age) {}
+
+	__CLASS__ : This is a constant variable that calls the name of the Class i.e. 'myClass'
+		   echo 'This is ' . __CLASS__;	// Outputs 'This is myClass'
+
+	this: given a variable '$name' using this looks like , $this->name
+
+	method: public function myFunction() {} // to Call $myObject->myFunction()
+
+
+** Private, Protected, Public **
+
+	Public    - Can be accessed anywhere
+	Private   - Only the class can use it
+	Protected - Only the class and subclasses can access it
+
+
+** Method Overloading **
+
+	Method overloading in Java is not the same as PHP, This is when you
+	define multiple constructors in Java, but in PHP it looks like:
+
+	public function __construct($name, $age, $eyes = "") {}
+
+	$person1 = new Person("Levi", 21);		// ignores $eyes parameter
+	$person2 = new Person("Marian", 22, "Brown");	// sets $eyes parameter
+
+** Magic method setters/getters **
+
+	class myClass {
+		private $name;
+		private $age;
+
+		public function __contruct($name, $age) {
+			$this->name;
+			$this>age;
+		}
+
+		/* This is a getter, call looks like: myObject->getName() */
+		public function getName() {
+			return $this->name;
+		}
+
+		/* This is a setter, call looks like: myObject->setName("Levi"); */
+		public function setName($name) {
+			$this->name = $name;
+		}
+
+
+		// BUT there is an easier way of making a getter
+		// This is the __get($property) magical method below, and 
+		// calling it looks like: 
+		// myObject->__get('name') or myObject->__get('age')
+
+		public function __get($variable) {
+			// Checks if the property exists, in this case either 'name' or 'age'
+			// $this = this class
+			if (property_exists($this, $variable)) {
+				return $this->$variable;
+			}
+		}
+
+
+		// This is another magic method, but this time
+		// this is a setter magic method __set($property, $newValue)
+		// call looks like: 
+		// $myObject->__set('name', 'Bitch') or $myObject->__set('age', 51)
+
+		public function __set($variable, $newValue) {
+			// Checks if the property exists, in this case either 'name' or 'age'
+			// $this = this class
+			if (property_exists($this, $variable)) {
+				$this->$variable = $newValue;
+			}
+		}
+	}
+
+** Inheritance **
+
+	To inherit a parent class:  class mySubclass extends myParentclass {}
+	
+	In java you use super(), but in php you use parent::_construct() it looks like:
+
+		class Parent {
+			protected $name;
+			protected $age;
+	
+			public function __contruct($name, $age) {
+				$this->name = $name;
+				$this->age  = $age;
+			}
+		}
+
+
+		class Subclass extends Parent {
+			private $eyeColor;
+
+			public function __construct($name, $age, $eyeColor) {
+				parent::__construct($name, $age);
+				$this->eyeColor = $eyeColor;
+			}
+		}
+
+	
+** Static method and properties **
+
+	// A static variable will need to be called using self::myVariable
+	// instead of a none static variable of $this->myVariable
+
+	// You don't need to instantiate a class that has a static function
+	// Example below:
+
+		class myClass {
+			public $name;
+			public $age;
+			public static $minLen = 6;
+
+			public static function validateMin($pass) {
+				if (strlen($pass) >= self::$minLen) {
+					return true;
+				} else {
+					return false;
+				}
+			}
+		}	
+
+	// To call the static method, it looks like myClass::validateMin($params):
+
+	if (myClass::validateMin('cool')) {
+		echo "Its longer than 6";
+	} else {
+		echo "Its NOT longer than 6";
+	}
+
+
+	
+
+
+
+
+
+	
