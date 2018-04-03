@@ -1,0 +1,39 @@
+** Hiding a folder and its files **
+
+	'Options -Indexes' <-- without quotation marks this hides the folders and the files
+
+	For example you have 2 folders app and public, if you want to hide the app folder
+
+	You cd into the app folder and create a .htaccess, inside that file just type 'Options -Indexes'
+
+	The app folder is now forbidden to be seen on the browser
+
+
+** Direct into the main page (Home page) **
+	
+	// This whole .htaccess is inside the public folder
+	// /php_mvc/public is the root folder, in XAMPP the root folder is htdocs
+	// RewriteEngine On = allow rewrite
+	// Options -Multiviews = This disables using myPage.php and myPage, '-' symbol means disable
+	// The last 3 are:
+	// RewriteCond %{REQUEST_FILENAME} !-d	// These two looks for a file 
+	// RewriteCond %{REQUEST_FILENAME} !-f	// if the file doesn't exist, then go to RewriteRule below	
+	// RewriteRule  ^(.+)$ index.php?url=$1 [QSA,L]	// If a page doesn't exist then go here
+	// index.php?url=$1 '$1' is a variable 
+	// by default it looks like index.php?url=post   or in this case project/public/index.php?url=post
+	// But by using the $1 variable it looks like index.php/post or project/public/post
+
+	<IfModule mod_rewrite.c>
+		Options -Multiviews
+		RewriteEngine On
+		RewriteBase /php_mvc/public
+		RewriteCond %{REQUEST_FILENAME} !-d
+		RewriteCond %{REQUEST_FILENAME} !-f
+		RewriteRule  ^(.+)$ index.php?url=$1 [QSA,L]
+	</IfModule>
+
+	
+
+
+
+

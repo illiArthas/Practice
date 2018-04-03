@@ -135,9 +135,31 @@
 	}
 
 
-	
+** unset() **
 
+	Read the code below:
 
+	<?php
+
+    
+		$myArray = array("asdasd", "cool", "awesome");
+    
+    
+		print_r($myArray);
+    
+    
+		unset($myArray[0]);
+    
+    
+		print_r($myArray);
+    
+
+	?>
+
+	Outputs:
+
+	Array([0] => asdasd  [1] => cool  [2] => awesome)
+	Array([1] => cool  [2] => awesome)
 
 
 
