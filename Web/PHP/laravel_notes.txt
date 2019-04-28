@@ -1,0 +1,455 @@
+	Composer is important and is pretty much NPM for Node
+
+
+	Links:
+		To include javascript in Laravel have a look at this page
+		https://www.reddit.com/r/laravel/comments/1xw04r/where_do_i_include_my_page_specific_javascript/
+
+		Model attributes
+		https://laravel.com/docs/5.8/eloquent
+
+		Use custom css
+			https://www.youtube.com/watch?v=bSG2YMqJJys go to 10:19
+
+		Laravel Collective forms
+			https://github.com/LaravelCollective/docs/blob/5.6/html.md
+
+		Laravel validation
+			https://laravel.com/docs/5.8/validation
+
+		Laravel Blog text editor
+			https://github.com/UniSharp/laravel-ckeditor
+
+
+	Artisan Commands:
+
+		$ php artisan serve
+		$ php artisan list
+		$ php artisan help migrate
+		$ php artisan make:controller TodosController
+		$ php artisan make:model Todo-m	// -m means add migration
+		$ php artisan make:migration add_todos_to_db -table=todos // this creates a migration separately
+		$ php artisan migrate
+		$ php artisan tinker
+
+		* Note *
+
+		Controller should be plural and model singular i.e. PostsController, Post model
+
+
+	Eloquent ORM:
+		Laravel includes the Eloquent object relational mapper, this is similar to query language in sails
+
+		- Makes querying & working with the DB very easy
+		- Possible to still use raw SQL query if needed 
+
+		Examples:
+
+			Use App\Todo
+
+			$todo = new Todo;
+
+			$todo->title = 'Some Todo';
+
+			$todo->save(); // Inserts data, which is the same SQL `INSERT INTO Todo (title) VALUES ('Some Todo')`
+
+			To show all: Post::all()
+
+			To find one: Post::find($id)
+
+			To order by: Post::orderBy('title', 'asc')->get();
+
+			To order by with where clause: Post::where('active', 1)->orderBy('title', 'asc')->get();
+
+			To limit you use 'take': Post::where('active', 1)->take(5)->get();  // this takes 5 active Posts
+
+			To paginate, this shit is very easy: $posts = Post::where('active', 1)->paginate(10); // this means 10 per page
+			
+			Active pagination in blade.php you activate by {{$posts->link()}}
+
+		
+
+	To create a project using composer:
+
+		composer create-project laravel/laravel newProjectName
+
+	To serve:
+
+		cd into project root, then type `php artisan serve`
+
+	Routing:
+
+		Routes are inside /routes/web.php
+
+		GET request to show a page:
+
+			Route::get('/', function() {
+				return view('myPage');	// this renders a php file inside /resources/view/myPage.blade.php
+			})
+
+		GET request to show a page within 'books' route:
+
+			Route::get('/books', function() {
+				return "<h1>This is your first Laravel app</h1>";  /*  It can render html */
+			})
+
+		GET request to show a specific book from route:
+
+	
+			Route::get('/books/{id}', function($id) {
+				return 'This is user' . $id;
+			});
+
+			*Note* In Node this route looks similar to app.get('/books/:id')
+
+
+		GET request multiple parameters from route:
+
+			Route::get('/books/{id}/{extra}', function($id, $extra) {
+				return 'Id number is ' . $id . "And name is " . $extra;
+			});
+
+		- To check routing list type in terminal `php artisan route:list`
+
+		
+
+	Model:
+
+		To create - `php artisan make:model Post` or to create a migration `php artisan make:model Book -m`
+
+		Model attributes https://laravel.com/docs/5.8/eloquent:
+
+			// Table name
+			protected $table = "post_table";
+
+			// Primary key
+			public $primaryKey = 'id';
+
+			// Timestamps
+			public $timestamps = true;
+
+		If you want to use Model data inside controller you have to import it using `use App\Post` Post in this case is the model name
+
+		For example:
+
+		<?php
+
+			namespace App\Http\Controllers;
+
+			use Illuminate\Http\Request;
+
+			use App\Post;	// Include it here
+
+			class PostsController extends Controller
+			
+			{ ...
+
+		To show all: Post::all()
+
+		To find one: Post::find($id)
+
+		To order by: Post::orderBy('title', 'asc')->get();
+
+		To order by with where clause: Post::where('active', 1)->orderBy('title', 'asc')->get();
+
+		To limit you use 'take': Post::where('active', 1)->take(5)->get();  // this takes 5 active Posts
+
+		To use SQL query instead of eloquent:
+
+			import db at the top of controller `use DB;`
+
+		then use by:
+
+			$posts = DB::select('SELECT * FROM posts');
+
+
+	Model relationships:
+
+			- Lets say we want to create a belongsTo relationship from Post to User
+
+			- Simply add inside Post model:
+
+			public function user() {
+				return $this->belongsTo('App\User');
+			}
+
+			- Then add hasMany inside User model:
+
+			public function posts() {
+				return $this->hasMany('App\Post');
+			}
+
+			- By creating relationships, it allows us to easily access relationships easily in Laravel by
+				$user = User::find($id);
+
+				return view('posts')->with('posts', $user->posts);
+
+
+	Migration create:
+
+		After creating a model type `php artisan make:migration Book`
+
+		Go inside database/migration and whatever the name of the file is .php
+
+		Below is what a simple schema is in Laravel, think of it as the model in Sails JS it's the same but different syntax
+
+		public function up() {
+
+			Schema::create('posts', function (Blueprint $table) {
+            			$table->bigIncrements('id');
+            			$table->string('title');
+            			$table->mediumText('body');
+            			$table->timestamps(); // This creates created_at and updated_at timestamps
+        		});
+
+		}
+
+
+		To create a migration for adding a new column to existing table
+
+		- Type `php artisan make:migration add_new_column_to_table`
+
+		- Go to created migration inside database/migration/add_new_column_to_posts_table.php
+
+		- Inside up function:
+
+			Schema::table('posts', function($table) {
+				$table->integer('user_id') // this is adding 'user_id' column which is an integer to posts table
+			});
+
+		- Drop column inside down function
+
+			Schema::table('posts', function($table) {
+				$table->dropColumn('user_id') // deletes 'user_id' column
+			})
+
+		- Once done, you need to migrate inside terminal by `php artisan migrate`
+
+		- Incase you want to undo just type `php artisan migrate rollback`
+
+
+	Controller create:
+
+		`php artisan make:controller BooksController` or `php artisan make:controller BooksController --resource`
+
+		After creating a controller, you should be able to see BooksController.php inside app/http/controllers
+
+
+	Running a controller inside route:
+
+		Instead of returning a template inside the route i.e. Route::get('/', function() { return view('myPage') });
+
+		You can assign a controller that handles the request like:
+
+			Route::get('/', 'BooksController@myMethod');
+
+			myMethod is a method inside BooksController and an example would look like:
+
+				public function myMethod() {
+					/* looks for /resources/views/myPage.blade.php */
+					return view('myPage');  
+				}
+
+	Using config:
+
+		Edited .env and changed APP_NAME from 'Laravel' to any names you want
+
+		Inside one of your blade php files that's rendering html, you can use {{config('app.name', "Else use me")}}
+
+
+
+	Blade Template Engine:
+
+		- {{$title}} this parses text
+		
+		- {!! $title !!} this parses HTML 
+
+		- Example of if:
+
+			@if ($number1 > $number2)
+				<h2>It's true!</h2>
+			@endif
+
+
+		- Example of foreach
+			
+			<ul>
+				@foreach($rooms as $room)
+
+					<li>{{$room}}</li>
+				
+				@endforeach
+			</ul>
+
+		- To use custom CSS, just watch: https://www.youtube.com/watch?v=bSG2YMqJJys go to 10:19
+
+		- If u don't want to use custom CSS you can use bootstrap which is already included with Laravel, you can access by:
+
+			`{{assets('css/app.css')}}`
+
+			So linking would look like  <link rel="stylesheet" href="{{asset('css/app.css')}}">
+
+		
+		Example of a layout(Header and Footer):
+
+		- Create a folder inside /views called 'layouts' * Note: You don't have to create a folder, it just needs to be inside /views *
+
+		- Create a file called header_footer.blade.php
+
+		- Inside header_footer.blade.php, create your html5 boiler plate
+			<!DOCTYPE html>
+			<html>
+				<head></head>
+				<body>
+					@yield('content_name')
+				</body>
+			</html>
+
+
+		To use this header and footer component inside other files:
+		- For example about.blade.page would look like:
+
+			@extends('layouts.header_footer') // Grabs the file in directory /resources/views/layouts
+
+			@section('content_name')
+				<h3>Congratulations you just included a layout!</h3>
+				<p>I hope you're enjoying Laravel so far!</p>
+			@endsection
+		
+
+		- Passing data inside controller, i.e. inside BooksController
+
+		public function index() {
+
+			$passingData = "You are so cool!";
+
+			$data = array(
+				'title' => "You are so cool again!",
+				'books' => ['Book1', 'book2', 'book3']
+			)
+
+			
+			// Three ways of passing data			
+
+			return view('myPage', compact('passingData')); // 1	<-- access by {{$passingData}}
+
+			return view('myPage')->with('myTitle', $passingData); // 2	<-- access by {{$myTitle}}
+
+			return view('myPage')->with($data); // 3	<-- Check below example to see how it's accessed
+
+		}
+
+
+		So if we were to pass in the 3rd example `return view('myPage')->with($data` to myPage.blade.php, to access would look:
+
+
+		<h1>{{$title}}</h1>
+
+		@if (count($books) > 0)
+
+			<ul>
+
+				@foreach($books as $book)
+					
+					<li>{{$book}}</li>
+
+				@endforeach
+
+			</ul>
+		
+		@endif
+
+		
+
+	Tinker:
+
+	Tinker is used to quickly read / create data for the database in Laravel
+
+		- Inside root directory using terminal, type `php artisan tinker`
+
+		- You should see <<< to ensure you're inside tinker
+
+		- To exit type `quit`
+
+		- For example you created a migration for the `Post` model, you can create data using tinker
+		  instead of creating data directly from the database using INSERT INTO Post
+
+		Create data by:
+
+			$myPost = new App\Post();
+
+			$myPost->title = "My Title maynee";
+
+			$myPost->body = "This is going to be the body";
+
+			$myPost->save(); // This creates it, check inside the database to see that it works
+
+		If you want to create another record after save(), you need to initiate new App\Post() again by `$myPost = new App\Post()`
+
+
+			
+	CRUD:
+
+		To automatically use crud functionalities laravel created, when creating a controller you type:
+
+			`php artisan make:controller PostsController --resource`
+
+		Using --resource automatically creates functions inside PostsController and they are:
+
+			index, create, store, show, edit, update, etc.
+	
+	
+
+		Now instead of manually creating CRUD inside routes/web.php, inside the file you can add:
+
+			Route::resource('posts', 'PostsController');
+
+		So whenever someone visits the /posts handle requests inside PostsController with index, create, store, etc
+
+		To check if it worked, in terminal check route list again `php artisan route:list`
+
+			
+	Laravel Forms using collective https://github.com/LaravelCollective/docs/blob/5.6/html.md
+
+		Install using composer on terminal and add providers and aliases inside config/app.php
+
+		This whole form is essentially handlebars way of creating inputs
+
+
+	Laravel validation https://laravel.com/docs/5.8/validation
+
+
+	Laravel ckeditor is used for blogs by adding bold, italics, etc. https://github.com/UniSharp/laravel-ckeditor
+
+	
+	To make a PUT request you have to include this {{ Form::hidden('_method', 'PUT') }} inside the form, check
+		edit.blade.php to see how it works
+
+	
+	Laravel Authentication:
+
+		`php artisan make:auth` enables the authentication and pretty much creates authentication for us
+
+		* Note Below *
+
+		Now in laravel 5.6 you can easily check whether the user authenticated using Authentication Directives in your blades.  
+		@auth <!-- your blade codes --> @endauth (check authenticated )
+		@guest <!-- your blade codes --> @endguest (check not authenticated )
+
+
+	// At this point just have a look at the repository for the blog app to understand how to do things
+
+
+	Laravel linking storage as public/storage using simlink:
+
+		- `php artisan storage:link` 
+		
+		- So whatever you put in the /storage folder will be linked inside /public folder
+		
+
+	Printing to terminal: error_log('message here.')
+
+
+	
+
+

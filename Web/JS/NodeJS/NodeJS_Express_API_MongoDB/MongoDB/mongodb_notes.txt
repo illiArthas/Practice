@@ -167,7 +167,7 @@
 			lastName: {type: String, required: true}
 		});
 
-		// the "Cat" word creates/ uses the 'Cat' collection(table)
+		// the word "Cat" creates/ uses the 'Cat' collection(table)
 		// BUT the "Cat" word will turn into 'cats' in the database
 		// it converts it into a model, so you can use methods to manipulate data
 		

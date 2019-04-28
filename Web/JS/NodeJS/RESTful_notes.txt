@@ -6,7 +6,7 @@
 	
 	NEW route -  /dogs/new   GET      displays form to make a new dog
 
-	CREATE rou - /dogs	 POST	  add a new dog to DB
+	CREATE route - /dogs	 POST	  add a new dog to DB
 
 	SHOW route - /dogs/:id   GET	  shows info about one dog
 	
