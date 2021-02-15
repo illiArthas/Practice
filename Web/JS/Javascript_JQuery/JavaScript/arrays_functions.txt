@@ -51,4 +51,17 @@
 
 	var letters = nums.slice(3, 5);	// this looks like ["a", "b"]
 
-
+** Higher Order Functions **
+	These are functions that operate on/with other functions. They can:
+		- Accept other functions as arguments
+		- Return a function
+		
+		function dog (func) {
+			func();
+		}
+		
+		function woof () {
+			console.log('Woof!');
+		}
+		
+		dog(woof); // Woof!
