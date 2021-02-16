@@ -65,3 +65,19 @@
 		}
 		
 		dog(woof); // Woof!
+		
+** Higher order function returning function, example below **
+
+	function makeBetweenFunc (min, max) {
+		return function (num) {
+			return num >= min && num <= max;
+		}
+	}
+
+	const underAgeRange = makeBetweenFunc(0, 17); // creates a range between 0 and 17
+	const retirementRange = makeBetweenFunc(65, 100);
+
+	underAgeRange(16); // true 
+	underAgeRange(21); // false
+	retirementAge(67); // true
+	retirementAge(64); // false
